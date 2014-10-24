@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="page page--blog">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+    
+        <meta name="description" content="Node.js is great for building fast, highly scalable, web applications. Making use of Websockets, we are able to leverage this speed an flexibility, and deliver data to a huge number..." />
+    
+    
+     
+        <meta name="keywords" content="" />
+    
+
+
+    <title>Simple Chat App | Mark Rabey</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//themes.googleusercontent.com">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,600,300">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax-dark.css">
+    <link rel="stylesheet" href="/assets/css/markrabey.min.css">
+    
+    <link rel="canonical" href="http://markrabey.com/blog/2014/04/21/simple-chat-app">
+    
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@MarkRabey">
+    <meta name="twitter:domain" content="markrabey.com">
+    <meta name="twitter:creator" content="@MarkRabey">
+    <meta name="twitter:title" content="Simple Chat App | Mark Rabey">
+    <meta name="twitter:image:src" content="/logo.png">
+    
+        <meta name="twitter:description" content="Node.js is great for building fast, highly scalable, web applications. Making use of Websockets, we are able to leverage this speed an flexibility, and deliver data to a huge number...">
+    
+    
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js" type="text/javascript"></script> -->
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+        ga('create', 'UA-45432533-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+    <body>
+
+        <nav class="site-nav ">
+    <div class="wrapper">
+        <a href="/" class="site-nav__home">
+            <svg class="site-nav__logo" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+                <path class="site-nav__logo-fill" d="M28.716,43.987c-0.192-0.031-0.38-0.146-0.562-0.231c-0.359-0.168-0.692-0.373-1-0.63
+                    c-0.308-0.256-0.564-0.642-0.769-0.945h-0.173V44h2.503C28.715,43.996,28.716,43.991,28.716,43.987z"/>
+                <path class="site-nav__logo-fill" d="M12.99,35.655c-0.344-0.571-0.845-0.857-1.562-0.857c-0.484,0-0.935,0.085-1.367,0.253
+                    c-0.432,0.169-0.791,0.425-1.106,0.77c-0.315,0.344-0.535,0.776-0.718,1.296c-0.184,0.52-0.217,1.132-0.217,1.835V44h5.458
+                    v-6.082C13.476,36.981,13.334,36.227,12.99,35.655z"/>
+                <path class="site-nav__logo-fill" d="M20.354,36.853c-0.074-0.389-0.189-0.735-0.373-1.043c-0.183-0.309-0.437-0.553-0.767-0.737
+                    c-0.33-0.183-0.753-0.274-1.281-0.274c-0.615,0-1.112,0.113-1.507,0.341c-0.396,0.228-0.689,0.517-0.916,0.868
+                    c-0.228,0.351-0.353,0.732-0.448,1.143c-0.096,0.41-0.071,0.799-0.071,1.164V44h5.458v-5.949
+                    C20.45,37.64,20.426,37.241,20.354,36.853z"/>
+                <path class="site-nav__logo-fill" d="M34.196,40.566c0.183-0.506,0.274-1.044,0.274-1.615s-0.092-1.109-0.274-1.615
+                    c-0.184-0.506-0.45-0.944-0.803-1.318c-0.351-0.374-0.776-0.67-1.274-0.89c-0.498-0.221-1.055-0.33-1.669-0.33
+                    c-0.602,0-1.158,0.109-1.67,0.33c-0.514,0.22-0.961,0.516-1.341,0.89c-0.382,0.374-0.682,0.812-0.901,1.318
+                    s-0.329,1.044-0.329,1.615s0.109,1.109,0.329,1.615c0.22,0.505,0.52,0.944,0.901,1.318c0.38,0.373,0.827,0.67,1.341,0.89
+                    c0.512,0.221,1.068,0.33,1.67,0.33c0.614,0,1.171-0.109,1.669-0.33c0.498-0.22,0.924-0.517,1.274-0.89
+                    C33.746,41.511,34.013,41.071,34.196,40.566z"/>
+                <path class="site-nav__logo-fill" d="M0.135,0.337V44h6.403l0.016-10.006h1.319c0.015,0.304-0.02,1.517,0.009,1.517h0.066
+                    c0.263-0.304,0.703-0.965,1.318-1.367c0.616-0.403,1.333-0.532,2.153-0.532c0.674,0,1.288,0.173,1.846,0.516
+                    c0.557,0.346,0.958,0.905,1.208,1.683c0.322-0.763,0.8-1.319,1.438-1.671c0.637-0.352,1.303-0.527,2.006-0.527
+                    c0.791,0,1.427,0.125,1.926,0.374c0.498,0.249,0.874,0.574,1.159,0.978c0.287,0.403,0.452,0.868,0.562,1.395
+                    c0.11,0.528,0.101,1.07,0.101,1.627V44h3.336V27.324h1.213v8.187h0.173c0.204-0.304,0.461-0.584,0.769-0.84s0.641-0.396,1-0.564
+                    s0.736-0.294,1.132-0.374c0.396-0.081,0.783-0.121,1.165-0.121c0.776,0,1.489,0.131,2.142,0.396
+                    c0.652,0.264,1.216,0.634,1.692,1.109c0.476,0.477,0.846,1.039,1.11,1.691c0.264,0.651,0.395,1.364,0.395,2.141
+                    s-0.131,1.487-0.395,2.139c-0.265,0.653-0.635,1.211-1.11,1.688c-0.477,0.477-1.04,0.834-1.692,1.097
+                    c-0.117,0.048-0.237,0.103-0.359,0.121c0,0.003,0,0.006,0,0.008h6.464l-0.009-10.006h1.319c0.015,0.304-0.006,1.618,0.023,1.721
+                    c0.337-0.601,0.77-1.15,1.297-1.532c0.527-0.38,1.171-0.571,1.934-0.571c0.132,0,0.214,0.011,0.338,0.032
+                    c0.104,0.019,0.127,0.025,0.199,0.057V0.337H0.135z"/>
+                <path class="site-nav__logo-fill" d="M41.9,35.204c-0.418,0.184-0.749,0.437-1.02,0.759c-0.271,0.322-0.445,0.699-0.577,1.132
+                    c-0.132,0.432-0.145,0.896-0.145,1.395V44h3.639v-8.997c-0.149-0.046-0.277-0.073-0.421-0.073
+                    C42.807,34.93,42.317,35.021,41.9,35.204z"/>
+            </svg>
+            
+                <h2 class="site-nav__title">Mark Rabey<br />Full-Stack Web Developer</h2>
+            
+        </a>
+        <a href="#" class="site-nav__toggle" id="site-nav__toggle">Menu</a>
+        <ul class="site-nav__list" id="site-nav__list">
+            <li class="site-nav__item">
+                <a href="/about-contact/" class="site-nav__link  site-nav__about">About &amp; Contact</a>
+           
+
+            <!-- <li class="site-nav__item">
+                <a href="/services/" class="site-nav__link  site-nav__services">Services</a>
+            </li> -->
+
+            <li class="site-nav__item">
+                <a href="/portfolio/" class="site-nav__link  site-nav__portfolio">Portfolio</a>
+            </li> 
+
+            <li class="site-nav__item">
+                <a href="/blog/" class="site-nav__link  site-nav__blog">Blog</a>
+
+            <!-- <li class="site-nav__item">
+                <a href="/contact/" class="site-nav__link  site-nav__contact">Contact</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+<header class="page-head">
+    <div class="wrapper">
+        <h1 class="page-head__title">Simple Chat App</h1>
+        
+	<time class="page-head__date" datetime="2014-04-21">Monday, April 21, 2014</time>
+        	<hr>
+        
+    </div>
+</header>
+
+
+<div class="wrapper">
+    <div class="grid  grid--large">
+        <div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
+            <section class="post" data-ui-component="Main content">
+                <p><a href="http://nodejs.orm&quot;target=&quot;_blank">Node.js</a> is great for building fast, highly scalable, web applications. Making use of <a href="http://en.wikipedia.org/wiki/WebSocket&quot;taret=&quot;_blank">Websockets</a>, we are able to leverage this speed an flexibility, and deliver data to a huge number of clients simultaneously. Of course, I haven’t built much of anything with Node, just a <em>very</em> simple invoicing app to run on my local machine. I decided to build a simple chat app learn about working with Node and Websockets via <a href="http://socket.io&quot;target=&quot;_blank">Socket.io</a>.</p>
+
+<h2 id="what-is-socketio">What is Socket.io?</h2>
+<p>Socket.io is basically a Websockets plugin for Node.js. It allows us to eaily interact with a server via Websockets, while also providing a fallback for older browsers that don’t support this new technology. It detects Websocket compatibility, and if not available, it can fallback to Flash, AJAX, or an iFrame. It also supports a large set of browsers:</p>
+
+<ul>
+  <li>Internet Explorer 5.5+</li>
+  <li>Safari 3+</li>
+  <li>Google Chrome 4+</li>
+  <li>Firefox 3+</li>
+  <li>Opera 10.61+</li>
+  <li>iPhone Safari</li>
+  <li>iPad Safari</li>
+  <li>Android WebKit</li>
+  <li>WebOs WebKit</li>
+</ul>
+
+<h2 id="installing-dependancies">Installing Dependancies</h2>
+<p><a href="http://npmjs.org">Node Package Manager</a> makes it easy to quickly install the packages we will be using. First, in Terminal, create, and navigate to, a folder for your project:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir simple-chat <span class="o">&amp;&amp;</span> <span class="nb">cd </span>simple-chat</code></pre></div>
+
+<p>Next, have npm download the packages we’ll be using:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install express jade socket.io</code></pre></div>
+
+<p>In the project folder, you will now see in a folder called “node_modules” that contains these packages.</p>
+
+<p>All of the server-side code will be in a file called <code>server.js</code>. Open that up in your <a href="http://www.sublimetext.com/&quot;target=&quot;_blank">favourite text editor</a>, and we can start writing some code.</p>
+
+<h2 id="serving-a-static-page">Serving a Static Page</h2>
+<p>The browser-side of our app will be served a single static page. To do this, we will use <a href="http://expressjs.com&quot;target=&quot;_blank">Express</a>, a framework that greatly simplifies the process of serving a page, static or dynamic.</p>
+
+<p>First, we include the package in our project, and create the basic server:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+  <span class="p">,</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span></code></pre></div>
+
+<p>Next, we need to configure Express to serve the page that results from the views created with the <a href="http://jade-lang.com&quot;target=&quot;_blank">Jade</a> templating engine. We installed Jade earlier, in our NPM install. Express can also serve a static collection of files to the client, just like a traditional web server, so we will send a <code>public</code> folder that contains all of our client-side JavaScript, CSS and image files.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/views&#39;</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;jade&#39;</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/public&#39;</span><span class="p">));</span></code></pre></div>
+
+<p>Next, we will create the <code>views</code> and <code>public</code> folders.</p>
+
+<p>Then, we need to configure Express to serve <code>index.jade</code>, which we will create shortly, and then set Express to listen on a specific port. I’m using port 3000, but you’re welcome to use whatever port you would like.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index.jade&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span></code></pre></div>
+
+<h2 id="create-the-page-with-jade">Create the Page with Jade</h2>
+<p>Node.js uses templating engines to serve webpages. This is useful for sending dynamic pages, and to build them quickly.</p>
+
+<p>I opted to use <a href="http://jade-lang.com&quot;target=&quot;_blank">Jade</a> because its syntax is clear and simple, and it will easily do everything we need.</p>
+
+<h1 id="section">#</h1>
+<p>## Configuration
+We installed Jade earlier, but we need to include it in our <code>server.js</code> file. The standard is to include any libraries at the top of our file. This avoids having to check if they are already included when we want to use them. So, in our package declaration at the top of <code>server.js</code>, add:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">,</span><span class="nx">jade</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jade&#39;</span><span class="p">);</span></code></pre></div>
+
+<p>That’s actually all we need to do. Express is already set up to use Jade, we just need to make <code>index.jade</code> and our view is complete.</p>
+
+<h1 id="section-1">#</h1>
+<p>## Creating Our Page
+If we start our app now, and point our browser to our server, we will see an error. This is because we are asking our server to serve a view that doesn’t exist yet.</p>
+
+<p>We’re not going to create anything fancy, just a basic page with a title, container for the messages, a simple form for a user to set their name and send messages, and a count of current users.</p>
+
+<p>In the <code>views</code> folder, create a file called <code>index.jade</code> and add the following code:</p>
+
+<div class="highlight"><pre><code class="language-jade" data-lang="jade"><span class="nt">doctype</span> html
+<span class="nt">html</span>
+    <span class="nt">head</span>
+        <span class="nt">title</span> Simple Chat
+        <span class="nt">script</span>(<span class="na">src=</span><span class="s">&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;</span>)
+        <span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;/socket.io/socket.io.js&quot;</span>)
+        <span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;script.js&quot;</span>)
+    <span class="nt">body</span>
+        <span class="nt">div</span><span class="nc">.container</span>
+            <span class="nt">header</span>
+                <span class="nt">h1</span> Simple Chat
+            <span class="nt">input</span>(<span class="na">type=</span><span class="s">&#39;text&#39;</span>)<span class="nf">#nameInput</span>
+            <span class="nt">button</span><span class="nf">#nameSet</span> Set Name
+            <span class="nt">div</span><span class="nf">#messages</span>
+            <span class="nt">div</span><span class="nf">#controls</span>
+                <span class="nt">input</span>(<span class="na">type=</span><span class="s">&#39;text&#39;</span>)<span class="nf">#message</span>
+                <span class="nt">button</span><span class="nf">#submit</span> Send</code></pre></div>
+
+<p>Jade is all about indentation. You can see that we don’t need to close containers, simply indenting the children is enough. You can also see that we use a period <code>.</code> and a pound sign <code>#</code> to indicate class or ID for an element, similar to a CSS file.</p>
+
+<p>We also added links to 3 scripts at the top. First, is the latest version of jQuery (at the time of writing) being served from the Google CDN, next is the Socket.io script, which will be served by the package, and last is a file called <code>script.js</code> which we will create shortly to hold all of our client-side JavaScript (jQuery) functions.</p>
+
+<h2 id="socketio-configuration">Socket.io Configuration</h2>
+<p>Like Node.js, and really most things written in JavaScript, Socket.io is event based. Its aim, is to make real-time apps possible in every browser, and on every mobile device. It’s written in 100% JavaScript.</p>
+
+<h1 id="section-2">#</h1>
+<p>## Server-Side
+Like the other modules, we need to include Socket.io in our <code>server.js</code> file. We will also chain our Express server we it listens for connections on the same address and port. After the Jade declaration, add:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">,</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span></code></pre></div>
+
+<p>The first event we will use is the <code>connection</code> event. This is fired whenever a client (browser) tries to connect to the server. Socket.io creates a new socket that we will use to communicate messages to the client. We get started by initializing the connection:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Our other events</span>
+<span class="p">});</span></code></pre></div>
+
+<p>This function takes two arguments, the first is the event, and  the second is the callback function, with the socket object passed to it.</p>
+
+<p>Using this type of code, we can create new events on the client and on the server with Socket.io. We will create events to for a user to set their name, and send a message.</p>
+
+<p>Inside our connection function, let’s add the <code>setName</code> event code:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;setName&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;user_name&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span></code></pre></div>
+
+<p>The callback takes one argument, the data from the client. In our case this is the <code>name</code> the user has entered. The <code>set</code> function assigns a variable to the socket. The first argument is the name of the variables, the second is the value.</p>
+
+<p>Next, we need to add the code for the <code>message</code> event. This will get the user’s name, and broadcast an array to all clients which contains the message we received, along with the user’s name, and log it into our console:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">socket</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;user_name&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    	<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;message&#39;</span> <span class="o">:</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">user</span> <span class="o">:</span> <span class="nx">name</span> <span class="p">};</span>
+        <span class="nx">socket</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;user &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; sent this : &quot;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">});</span></code></pre></div>
+
+<p>That’s all there is for our server-side configuration. There are lots of events that <em>could</em> be added to enhance the features of the chat, but we’re not covering those here.</p>
+
+<p>A really nice things about Socket.io, is that we don’t have to work about client disconnections. When a client disconnects, Socket.io no longer receives a reply to the “heartbeat” messages, and will deactivate the client’s session. If it was just temporary, the client will reconnect and continue with the session.</p>
+
+<h1 id="section-3">#</h1>
+<p>## Client-Side
+Now that the server is setup to manage message, we need the client to send them.</p>
+
+<p>The client-side of Socket.io is almost identical to the server-side. It also works with custom events and we will create the same ones as on the server.</p>
+
+<p>First, inside the <code>public</code> folder, create a file called <code>script.js</code>. All of our functions will go in this file. Remember, it has already been included in the view we created.</p>
+
+<p>First, we need to start the Socket.io connection between the client and the server. This connection will be stored in a variable, which we will use later to send and receive data. When the <code>connect()</code> funciton is not passed any arguments, it automatically connects to the server that served the page:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span></code></pre></div>
+
+<p>Next, we’ll create some helper functions that we will need later. The first is a simple function to add a message to the screen along with the user’s name.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">addMessage</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">user_name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#messages&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;message&quot;&gt;&lt;p&gt;&#39;</span> <span class="o">+</span> <span class="nx">user_name</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="nx">msg</span> <span class="o">+</span> <span class="s1">&#39;&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+<p>This function uses the jQuery <em>.append()</em> function to add a <code>div</code> to the end of <code>div#messages</code>.</p>
+
+<p>Next, we will write a function to call when we want to send a new message:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">sendMessage</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#messageInput&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#message&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+		<span class="nx">addMessage</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#message&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="s2">&quot;Me&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
+		<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#message&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>First we check that our message isn’t blank, them we send a packet named <code>message</code> to the server that contains the message  text. We add this message to our own screen using the <code>addMessage</code> function we created earlier, and finally we clear the message input field.</p>
+
+<p>Now, when the client opens the page, we want the user name set before they send any messages. This function will send the user name to the server and then show the message input and submit button.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#nameInput&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;setName&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#nameInput&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#controls&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nameInput&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nameSet&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>We also hide the name setting controls once the data is sent to the server.</p>
+
+<p>Now, we need to make sure we can receive incoming messages and print them on the screen. We’ll start with a function similar to our server-side code, except inside we’ll call our <code>addMessage()</code> function.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">addMessage</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">],</span> <span class="nx">data</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]);</span>
+<span class="p">});</span></code></pre></div>
+
+<p>Remember, the data that the server sends to the client is an array containing the message, and the name of the user. We just call our <code>addMessage()</code> function and pass in the message and user name, taken from the received data.</p>
+
+<p>Finally, we need to add the initialization function that is fired once the page is fully loaded.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#controls&quot;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#nameSet&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="nx">setName</span><span class="p">()});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#submit&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="nx">sendMessage</span><span class="p">();});</span>
+<span class="p">});</span></code></pre></div>
+
+<p>This hides the message controls before the user name is set, then we set two click listeners which listen on the two submit buttons.</p>
+
+<p>That’s it for the client-side code.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>We now have a working chat service. A simple one, but a working one. To start the server, run the following command:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">node server</code></pre></div>
+
+<p>You should see a message from Socket.io sating the server is started. To view your page, go to <code>http://localhost:3000</code> (or whichever port you used previously).
+{&lt;3&gt;}<img src="/content/images/blog/2014/Apr/Screen_Shot_2014_04_21_at_2_18_59_PM.png&quot;alt=&quot;Set Name" alt="" /></p>
+
+<p>The design is super simple. In fact, I wouldn’t actually call it a ‘design’. But that wasn’t the point here. We have a chat server. After entering a name, the user is able to type and send a message.
+{&lt;6&gt;}<img src="/content/images/blog/2014/Apr/Screen_Shot_2014_04_21_at_2_22_10_PM.png&quot;alt=&quot;Send Message" alt="" /></p>
+
+<p>If you open your page in another browser, you can see the 2 clients interacting.
+{&lt;11&gt;}<img src="/content/images/blog/2014/Apr/Screen_Shot_2014_04_21_at_2_23_49_PM.png&quot;alt=&quot;Sent Messages" alt="" />
+{&lt;13&gt;}<img src="/content/images/blog/2014/Apr/Screen_Shot_2014_04_21_at_2_24_07_PM.png&quot;alt=&quot;More Sent Messages" alt="" /></p>
+
+<p>I believe this really shows the power of Node.js. We have client and server code that is nearly identical, meaning you no longer have to switch between languages in order for clients and servers to interact. You’re not really writing the code twice any more.</p>
+
+<p>You also may have noticed how few lines are in <code>server.js</code>. In less than 30 lines we created a functional chat app that is lightning fast. It’s very short, but it works very well.</p>
+
+<p>I will likely build a more enhanced version of this app, but feel free to do with it what you will. You can find this project on <a href="https://github.com/MarkRabey/simple-chat&quot;target=&quot;_blank">GitHub</a>.</p>
+
+            </section>
+            
+            
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'mrabey1983'; // required: replace example with your forum shortname
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            
+
+        </div
+
+        ><div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-one-third">
+            <div class="[ box  box--highlight ]  mb">
+                <h3 class="heading">Related Posts</h3>
+                <ul class="list-ui  post__list">
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-10-22">Wednesday, October 22, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/10/22/html-basics">HTML Basics</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-09-19">Friday, September 19, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/09/19/vertical-gap-between-divs">Vertical Gap Between Divs</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-09-09">Tuesday, September 09, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/09/09/keeping-up-to-date">Keeping Up To Date</a></h3>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="page-foot">
+	
+    <div class="wrapper  wrapper--full">
+	    <div class="grid">
+	    	<div class="grid__item">
+	    		All Content &copy; 2014 Mark Rabey.
+	    	</div>
+	    </div>
+    </div>
+</footer>
+<script src="/assets/js/groundwork.js" type="text/javascript"></script>
+<script src="/assets/js/markrabey.js" type="text/javascript"></script>
+<script src="/assets/js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+        
+    </body>
+</html>

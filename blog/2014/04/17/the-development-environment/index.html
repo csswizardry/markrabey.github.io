@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="page page--blog">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+    
+        <meta name="description" content="In several posts, I’ve started by talking about setting up my development environment. This is getting both dry, and repetitive. I use pretty much the same environment for everything lately,..." />
+    
+    
+     
+        <meta name="keywords" content="" />
+    
+
+
+    <title>The Development Environment | Mark Rabey</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//themes.googleusercontent.com">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,600,300">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/syntax-dark.css">
+    <link rel="stylesheet" href="/assets/css/markrabey.min.css">
+    
+    <link rel="canonical" href="http://markrabey.com/blog/2014/04/17/the-development-environment">
+    
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@MarkRabey">
+    <meta name="twitter:domain" content="markrabey.com">
+    <meta name="twitter:creator" content="@MarkRabey">
+    <meta name="twitter:title" content="The Development Environment | Mark Rabey">
+    <meta name="twitter:image:src" content="/logo.png">
+    
+        <meta name="twitter:description" content="In several posts, I’ve started by talking about setting up my development environment. This is getting both dry, and repetitive. I use pretty much the same environment for everything lately,...">
+    
+    
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js" type="text/javascript"></script> -->
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+        ga('create', 'UA-45432533-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+    <body>
+
+        <nav class="site-nav ">
+    <div class="wrapper">
+        <a href="/" class="site-nav__home">
+            <svg class="site-nav__logo" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+                <path class="site-nav__logo-fill" d="M28.716,43.987c-0.192-0.031-0.38-0.146-0.562-0.231c-0.359-0.168-0.692-0.373-1-0.63
+                    c-0.308-0.256-0.564-0.642-0.769-0.945h-0.173V44h2.503C28.715,43.996,28.716,43.991,28.716,43.987z"/>
+                <path class="site-nav__logo-fill" d="M12.99,35.655c-0.344-0.571-0.845-0.857-1.562-0.857c-0.484,0-0.935,0.085-1.367,0.253
+                    c-0.432,0.169-0.791,0.425-1.106,0.77c-0.315,0.344-0.535,0.776-0.718,1.296c-0.184,0.52-0.217,1.132-0.217,1.835V44h5.458
+                    v-6.082C13.476,36.981,13.334,36.227,12.99,35.655z"/>
+                <path class="site-nav__logo-fill" d="M20.354,36.853c-0.074-0.389-0.189-0.735-0.373-1.043c-0.183-0.309-0.437-0.553-0.767-0.737
+                    c-0.33-0.183-0.753-0.274-1.281-0.274c-0.615,0-1.112,0.113-1.507,0.341c-0.396,0.228-0.689,0.517-0.916,0.868
+                    c-0.228,0.351-0.353,0.732-0.448,1.143c-0.096,0.41-0.071,0.799-0.071,1.164V44h5.458v-5.949
+                    C20.45,37.64,20.426,37.241,20.354,36.853z"/>
+                <path class="site-nav__logo-fill" d="M34.196,40.566c0.183-0.506,0.274-1.044,0.274-1.615s-0.092-1.109-0.274-1.615
+                    c-0.184-0.506-0.45-0.944-0.803-1.318c-0.351-0.374-0.776-0.67-1.274-0.89c-0.498-0.221-1.055-0.33-1.669-0.33
+                    c-0.602,0-1.158,0.109-1.67,0.33c-0.514,0.22-0.961,0.516-1.341,0.89c-0.382,0.374-0.682,0.812-0.901,1.318
+                    s-0.329,1.044-0.329,1.615s0.109,1.109,0.329,1.615c0.22,0.505,0.52,0.944,0.901,1.318c0.38,0.373,0.827,0.67,1.341,0.89
+                    c0.512,0.221,1.068,0.33,1.67,0.33c0.614,0,1.171-0.109,1.669-0.33c0.498-0.22,0.924-0.517,1.274-0.89
+                    C33.746,41.511,34.013,41.071,34.196,40.566z"/>
+                <path class="site-nav__logo-fill" d="M0.135,0.337V44h6.403l0.016-10.006h1.319c0.015,0.304-0.02,1.517,0.009,1.517h0.066
+                    c0.263-0.304,0.703-0.965,1.318-1.367c0.616-0.403,1.333-0.532,2.153-0.532c0.674,0,1.288,0.173,1.846,0.516
+                    c0.557,0.346,0.958,0.905,1.208,1.683c0.322-0.763,0.8-1.319,1.438-1.671c0.637-0.352,1.303-0.527,2.006-0.527
+                    c0.791,0,1.427,0.125,1.926,0.374c0.498,0.249,0.874,0.574,1.159,0.978c0.287,0.403,0.452,0.868,0.562,1.395
+                    c0.11,0.528,0.101,1.07,0.101,1.627V44h3.336V27.324h1.213v8.187h0.173c0.204-0.304,0.461-0.584,0.769-0.84s0.641-0.396,1-0.564
+                    s0.736-0.294,1.132-0.374c0.396-0.081,0.783-0.121,1.165-0.121c0.776,0,1.489,0.131,2.142,0.396
+                    c0.652,0.264,1.216,0.634,1.692,1.109c0.476,0.477,0.846,1.039,1.11,1.691c0.264,0.651,0.395,1.364,0.395,2.141
+                    s-0.131,1.487-0.395,2.139c-0.265,0.653-0.635,1.211-1.11,1.688c-0.477,0.477-1.04,0.834-1.692,1.097
+                    c-0.117,0.048-0.237,0.103-0.359,0.121c0,0.003,0,0.006,0,0.008h6.464l-0.009-10.006h1.319c0.015,0.304-0.006,1.618,0.023,1.721
+                    c0.337-0.601,0.77-1.15,1.297-1.532c0.527-0.38,1.171-0.571,1.934-0.571c0.132,0,0.214,0.011,0.338,0.032
+                    c0.104,0.019,0.127,0.025,0.199,0.057V0.337H0.135z"/>
+                <path class="site-nav__logo-fill" d="M41.9,35.204c-0.418,0.184-0.749,0.437-1.02,0.759c-0.271,0.322-0.445,0.699-0.577,1.132
+                    c-0.132,0.432-0.145,0.896-0.145,1.395V44h3.639v-8.997c-0.149-0.046-0.277-0.073-0.421-0.073
+                    C42.807,34.93,42.317,35.021,41.9,35.204z"/>
+            </svg>
+            
+                <h2 class="site-nav__title">Mark Rabey<br />Full-Stack Web Developer</h2>
+            
+        </a>
+        <a href="#" class="site-nav__toggle" id="site-nav__toggle">Menu</a>
+        <ul class="site-nav__list" id="site-nav__list">
+            <li class="site-nav__item">
+                <a href="/about-contact/" class="site-nav__link  site-nav__about">About &amp; Contact</a>
+           
+
+            <!-- <li class="site-nav__item">
+                <a href="/services/" class="site-nav__link  site-nav__services">Services</a>
+            </li> -->
+
+            <li class="site-nav__item">
+                <a href="/portfolio/" class="site-nav__link  site-nav__portfolio">Portfolio</a>
+            </li> 
+
+            <li class="site-nav__item">
+                <a href="/blog/" class="site-nav__link  site-nav__blog">Blog</a>
+
+            <!-- <li class="site-nav__item">
+                <a href="/contact/" class="site-nav__link  site-nav__contact">Contact</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+<header class="page-head">
+    <div class="wrapper">
+        <h1 class="page-head__title">The Development Environment</h1>
+        
+	<time class="page-head__date" datetime="2014-04-17">Thursday, April 17, 2014</time>
+        	<hr>
+        
+    </div>
+</header>
+
+
+<div class="wrapper">
+    <div class="grid  grid--large">
+        <div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
+            <section class="post" data-ui-component="Main content">
+                <p>In several posts, I’ve started by talking about setting up my development environment. This is getting both dry, and repetitive. I use pretty much the same environment for everything lately, and I suspect if someone is reading about design, or CSS or something, they probably don’t care about the specifics of my package.json file. I decided to write one post about how I get setup for a project.</p>
+
+<h2 id="the-machine">The Machine</h2>
+<p>Regardless of whether I am working on a personal project, or one for work, I use a Mac. I find everything about it more satisfying than using a Windows machine. The look, the feel, even the way the keys are positioned on the keyboard, I find I am much more comfortable with a Mac.</p>
+
+<h2 id="the-setup">The Setup</h2>
+<p>With the tools I use, I need some config files for each project, but they’re all pretty similar. The folder structure is fairly arbitrary, but it’s what I like. I made myself 2 empty projects that each contain the folder structure I want along with a few key files:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">.
+└── project-name
+    ├── dist
+    <span class="p">|</span>   └── assets
+    <span class="p">|</span>       ├── css
+    <span class="p">|</span>       ├── fonts
+    <span class="p">|</span>       ├── images
+    <span class="p">|</span>       └── js
+    ├── src
+    <span class="p">|</span>   ├── css
+    <span class="p">|</span>   ├── js
+    <span class="p">|</span>   ├── less
+    <span class="p">|</span>   └── views
+    ├── .gitignore
+    ├── Gruntfile.js
+    ├── package.json
+    └── README.md</code></pre></div>
+
+<p>I put all my source code in the <code>src</code> folder, and use <code>dist</code> for the distribution files. For a <a href="http://ghost.org">Ghost</a> theme project, I have a few additional files under the <code>dist</code> folder. They’re all empty, although that will probably change once I get going developing more themes. In those cases, my <code>dist</code> folder looks like this:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">.
+└── project-name
+    ├── dist
+    <span class="p">|</span>   └── assets
+    <span class="p">|</span>   <span class="p">|</span>   ├── css
+    <span class="p">|</span>   <span class="p">|</span>   ├── fonts
+    <span class="p">|</span>   <span class="p">|</span>   ├── images
+    <span class="p">|</span>   <span class="p">|</span>   └── js
+    <span class="p">|</span>   ├── partials
+    <span class="p">|</span>   ├── error.hbs
+    <span class="p">|</span>   ├── index.hbs
+    <span class="p">|</span>   ├── page.hbs
+    <span class="p">|</span>   ├── post.hbs
+    <span class="p">|</span>   └── tag.hbs
+    ...</code></pre></div>
+
+<p>Before I do anything with these files and folders, including copying them to a working directory, I create a repository for the project on <a href="http://github.com">GitHub</a>. I put just about everything into a repository. It allows me to move easily between different machines, and provides a reasonable safe backup for my code. I don’t use any fancy tools for GitHub, just terminal, although in the near future I will likely be moving to something like <a href="http://www.sourcetreeapp.com/">SourceTree</a>. For now, just Terminal. After creating the repository, I go to my Terminal window, and navigate to my projects folder. Not the folder for the specific project, rather the folder that holds <em>all</em> of my projects.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /Users/mark/Documents/projects</code></pre></div>
+
+<p>Once in that folder, I clone my repository. For example, cloning <a href="/blog/2014/04/07/a-simple-css-grid/">my grid system</a> repository, I would type:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://github.com/MarkRabey/markr-grid.git</code></pre></div>
+
+<p>This will create a folder in the current location with the name of the repository, in this case <code>markr-grid</code>. Then I just use Finder to copy the files from my empty project into this new folder.</p>
+
+<h2 id="the-config">The Config</h2>
+<p>Configuring my projects is pretty simple given the empty files I have created. The first file I look at is <code>package.json</code>. This file is used by <a href="http://npmjs.org">Node Package Manager</a>(NPM) to manage development dependancies like Grunt, LESS, Jade, as well as the tools I use to lint, minify, and concatenate files. Let’s take a look:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;project-name&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;gruntfile.js&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;author&quot;</span><span class="o">:</span> <span class="s2">&quot;Mark Rabey&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;license&quot;</span><span class="o">:</span> <span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;repository&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;devDependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;grunt&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.4.4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grunt-contrib-uglify&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.4.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;watch&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.9.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grunt-contrib-less&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.10.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grunt-contrib-csslint&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grunt-contrib-cssmin&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.9.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grunt-contrib-watch&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.6.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grunt-contrib-jade&quot;</span><span class="o">:</span> <span class="s2">&quot;~0.11.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Most of this is pretty self-explanatory. I update the name, description, and repository url accordingly, and for the most part I’m done. The items under <code>devDependancies</code> specify the NPM packages I will use in the project. These are what I use for pretty much every project, the exception being the last one, <a href="http://jade-lang.com">Jade</a>, which I don’t use for Ghost themes at all.</p>
+
+<p>Next, I configure <code>Gruntfile.js</code>. This is the file that controls each Grunt task I want to run. Remember, I don’t actually write this everytime, I just tweak it as need to from my empty project. I keep it fairly simple. Basically, I want to be able to compile <a href="http://lesscss.org">LESS</a> into CSS and render Jade files to HTML. I would then like to <a href="http://en.wikipedia.org/wiki/Lint_%28software%29">lint</a> all my CSS and Javascript. Then, after files have been minified, I would like them moved to my <code>dist</code> folder. All Grunt files start off the same:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    	<span class="c1">// configure individual tasks</span>
+
+    <span class="p">});</span>
+<span class="p">};</span></code></pre></div>
+
+<p>Thanks to some work by my friend <a href="http://christophervachon.com&quot;target=&quot;_blank">Christopher</a>, I easily add a banner to the top of minified files, by add just a little code, plus some task specific settings:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">_banner</span> <span class="o">=</span> <span class="s1">&#39;/** \n* Package: &lt;%= pkg.name %&gt; \n* Author: &lt;%= pkg.author %&gt; \n* Build Time: &lt;%= grunt.template.today(&quot;yyyy-mm-dd HH:MM:ss&quot;) %&gt;  \n*/\n&#39;</span><span class="p">;</span>
+    <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    	<span class="nx">pkg</span><span class="o">:</span> <span class="nx">grunt</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">readJSON</span><span class="p">(</span><span class="s1">&#39;package.json&#39;</span><span class="p">),</span>
+        <span class="p">...</span>
+    <span class="p">});</span>
+<span class="p">};</span></code></pre></div>
+
+<p>I use basically the same configuration for each task across projects. The order they are defined is meaningless, just the order I did it in. They are all inside of <code>grunt.initConfig({});</code> First, <strong>Uglify</strong>:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">uglify</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">banner</span><span class="o">:</span> <span class="nx">_banner</span>
+	<span class="p">},</span>
+	<span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="p">[{</span>
+			<span class="nx">cwd</span><span class="o">:</span> <span class="s1">&#39;src/js&#39;</span><span class="p">,</span>
+			<span class="nx">expand</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;*.js&#39;</span><span class="p">],</span>
+			<span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;dist/assets/js/&#39;</span><span class="p">,</span>
+			<span class="nx">ext</span><span class="o">:</span> <span class="s1">&#39;.min.js&#39;</span>
+		<span class="p">}]</span>
+	<span class="p">}</span>
+<span class="p">},</span></code></pre></div>
+
+<p>When called, this task will take any <code>.js</code> file in <code>src/js</code>, minify it, and put the minified file in <code>dist/assets/js</code> with the same file name, and an extension of <code>.min.js</code>. Next I have <strong>CSSLint</strong>:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">csslint</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">options</span><span class="o">:</span> <span class="p">{},</span> <span class="c1">// close .options</span>
+	<span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;src/css/*.css&#39;</span><span class="p">]</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>This task looks at all <code>.css</code> files in <code>src/css</code> and lints them. That is, it checks for known issues or errors, and lets me know my code is acceptable. The <code>options</code> setting allows you to tell the task to ignore certain errors, but I let it catch me on everything. Then I configure <strong>CSSMin</strong> - Uglify for CSS:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">cssmin</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">banner</span><span class="o">:</span> <span class="nx">_banner</span><span class="p">,</span>
+	<span class="p">},</span>
+	<span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="p">[{</span>
+		<span class="nx">cwd</span><span class="o">:</span> <span class="s1">&#39;src/css&#39;</span><span class="p">,</span>
+		<span class="nx">expand</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;*.css&#39;</span><span class="p">],</span>
+		<span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;dist/assets/css/&#39;</span><span class="p">,</span>
+		<span class="nx">ext</span><span class="o">:</span> <span class="s1">&#39;.min.css&#39;</span>
+		<span class="p">}]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Basically it does the exact same thing for CSS that Uglify does for JS. Minify any CSS files in <code>src/css</code> and place them the <code>dist/assets/css</code> folder. Then I have my <strong>LESS</strong> config:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">less</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">banner</span><span class="o">:</span> <span class="nx">_banner</span>
+	<span class="p">},</span>
+	<span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="p">[{</span>
+			<span class="nx">cwd</span><span class="o">:</span> <span class="s1">&#39;src/less&#39;</span><span class="p">,</span>
+			<span class="nx">expand</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;*.less&#39;</span><span class="p">],</span>
+			<span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;src/css/&#39;</span><span class="p">,</span>
+			<span class="nx">ext</span><span class="o">:</span> <span class="s1">&#39;.css&#39;</span>
+		<span class="p">}]</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>The LESS task is one that changes slightly depending on the project. In some cases, I may have many <code>.less</code> files that are included in one ‘master’ file that actually gets included on the page I’m building. In those cases, I change the above <code>src: ['*.less']</code> to <code>src: ['main-file-name.less']</code>, or whatever that main file is called. Because this file includes the others, they are compiled, but I have only one file as the result. These CSS files are not put into <code>dist</code>, they are placed in <code>src/css</code> and await linting and minifying. If I am making use of Jade, I have that config next:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jade</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">compile</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">pretty</span><span class="o">:</span> <span class="kc">true</span>
+		<span class="p">},</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="p">[{</span>
+			<span class="nx">expand</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">cwd</span><span class="o">:</span> <span class="s1">&#39;src/views/&#39;</span><span class="p">,</span>
+			<span class="nx">src</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;**/*.jade&#39;</span><span class="p">,</span><span class="s1">&#39;!layout.jade&#39;</span> <span class="p">],</span>
+			<span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;dist&#39;</span><span class="p">,</span>
+			<span class="nx">ext</span><span class="o">:</span> <span class="s1">&#39;.html&#39;</span>
+		<span class="p">}]</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>This task takes any <code>.jade</code> in <code>src/views</code> including subfolders, and compiles them to HTML and places them in the <code>dist</code> folder. It ignores the file <code>layout.jade</code>, as it is included in other files as needed.</p>
+
+<p>The last task I have configured in <strong>Watch</strong>. This is where, for me, it all really comes together.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+	<span class="nx">js</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="s1">&#39;src/js/*.js&#39;</span><span class="p">,</span>
+		<span class="nx">tasks</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;uglify&#39;</span><span class="p">],</span>
+		<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">interrupt</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+	<span class="nx">less</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="s1">&#39;src/less/*.less&#39;</span><span class="p">,</span>
+		<span class="nx">tasks</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;less&#39;</span><span class="p">,</span><span class="s1">&#39;cssmin&#39;</span><span class="p">],</span>
+		<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">interrupt</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+	<span class="nx">jade</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">files</span><span class="o">:</span> <span class="s1">&#39;src/views/*.jade&#39;</span><span class="p">,</span>
+		<span class="nx">tasks</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;jade&#39;</span><span class="p">],</span>
+		<span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">interrupt</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>If not using Jade, I remove that last part. Each part of this config tells Watch to ‘watch’ different files, and do different things. In each case it watches specified files, and if one that matches registers a change, it fires the specified tasks, as configured above. So, for example, I save a LESS file, and Watch sees the change in <code>src/less/*.less</code>, it then triggers my <code>less</code> task, followed by <code>cssmin</code>, quickly compiling, linting, minifying, and distributing my file.</p>
+
+<h2 id="using-grunt">Using Grunt</h2>
+<p>At the bottom of this file, is code to load the NPM Tasks, and register a default task.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-watch&#39;</span><span class="p">);</span>
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-uglify&#39;</span><span class="p">);</span>
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-less&#39;</span><span class="p">);</span>
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-csslint&#39;</span><span class="p">);</span>
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-cssmin&#39;</span><span class="p">);</span>
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-jade&#39;</span><span class="p">);</span>
+
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;watch&#39;</span><span class="p">]);</span></code></pre></div>
+
+<p>I could register individual task for everything I configured, allowing me to type something like <code>grunt cssmin</code> which would run only that task. But generally I don’t want to run task individually. I want to turn it on, and pretty much ignore it. So I have one default task, that simply calls ‘watch’, which handles the rest. So, when I’m ready to code, I simply type <code>grunt watch</code> and I’m ready to go.</p>
+
+<p>That’s pretty much all I have. Anything else pretty project specific, but even then, nothing fancy.</p>
+
+            </section>
+            
+            
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'mrabey1983'; // required: replace example with your forum shortname
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            
+
+        </div
+
+        ><div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-one-third">
+            <div class="[ box  box--highlight ]  mb">
+                <h3 class="heading">Related Posts</h3>
+                <ul class="list-ui  post__list">
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-10-22">Wednesday, October 22, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/10/22/html-basics">HTML Basics</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-09-19">Friday, September 19, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/09/19/vertical-gap-between-divs">Vertical Gap Between Divs</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-09-09">Tuesday, September 09, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/09/09/keeping-up-to-date">Keeping Up To Date</a></h3>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="page-foot">
+	
+    <div class="wrapper  wrapper--full">
+	    <div class="grid">
+	    	<div class="grid__item">
+	    		All Content &copy; 2014 Mark Rabey.
+	    	</div>
+	    </div>
+    </div>
+</footer>
+<script src="/assets/js/groundwork.js" type="text/javascript"></script>
+<script src="/assets/js/markrabey.js" type="text/javascript"></script>
+<script src="/assets/js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+        
+    </body>
+</html>
