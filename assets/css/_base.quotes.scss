@@ -1,0 +1,33 @@
+/*------------------------------------*\
+    #QUOTES
+\*------------------------------------*/
+
+blockquote {
+  background: $color-gray-lighter;
+  border-left: 10px solid $color-gray;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+
+  &:before,
+  &:after {
+  	color: $color-gray;
+  	font-size: 4em;
+  	line-height: 0.1em;
+  	vertical-align: -0.4em;
+  }
+  &:before {
+	content: open-quote;
+	margin-right: 0.25em;
+	
+  }
+
+  &:after {
+	content: close-quote;
+	margin-left: 0.25em;
+  }
+}
+
+blockquote p {
+  display: inline;
+}

@@ -1,0 +1,55 @@
+# Site settings
+title: Mark Rabey
+email: hello@markrabey.com
+description: "I try to make the web a better place by writing the best possible code I can, I trying to share my knowledge with others."
+keywords: "web developement, web design, barrie, midland, ontario, full-stack, developer, css, html, javascript, node.js, coldfusion, user experience"
+baseurl: ""
+url: "http://markrabey.com"
+twitter_username: MarkRabey
+github_username:  MarkRabey
+# highlighter: rouge
+# Build settings
+markdown: kramdown #[ maruku | rdiscount | kramdown | redcarpet ]
+permalink: /blog/:year/:month/:day/:title
+paginate: 5
+paginate_path: "blog/page/:num"
+
+sass:
+    sass_dir: css
+
+collections:
+    demos:
+        output: true
+    portfolio:
+        output: true
+
+defaults:
+    -
+        scope:
+            path: ""
+            type: "posts"
+        values:
+            layout: "post"
+            comments: true
+    -
+        scope:
+            path: "demos"
+            type: "demos"
+        values:
+            layout: "demo"
+
+include:
+  - .nojekyll
+
+exclude:
+  - "Gruntfile.js"
+  - "Rakefile"
+  - "node_modules"
+  - "package.json"
+  - "bower_components"
+  - "bower.json"
+  - "assets/css/markrabey.scss"
+  - "assets/css/markrabey.min.css.map"
+
+gems:
+    - jekyll-redirect-from

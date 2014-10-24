@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+{% include nav.html %}
+{% include header--masthead.html %}
+
+{% if page.page-class != 'page--home' %}
+<div class="wrapper">
+{% endif %}
+
+    {{ content }}
+
+{% if page.page-class != 'home' %}
+</div>
+{% endif %}
+
+{% include footer.html %}

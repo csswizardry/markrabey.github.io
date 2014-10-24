@@ -1,0 +1,39 @@
+///*------------------------------------*\
+//    #GLOBAL
+//\*------------------------------------*/
+
+$base-font-size:          16px !default;
+$base-line-height:        24px !default;
+$base-text-color:         #333 !default;
+$base-background-color:   #f8f8f8 !default;
+
+$brand-color:   #E25440;
+$brand-round:   3px;
+$base-round:    $brand-round;
+
+$spacing-unit:           $base-line-height;
+$spacing-unit--small:    round($spacing-unit / 2);
+$spacing-unit--large:    round($spacing-unit * 2);
+
+
+// Hold our breakpoint aliases and conditions in a list.
+//
+// These can be invoked later on via the `media-query()` mixin found in
+// `_tools.responsive`.
+
+$breakpoints: (
+    "palm"          "screen and (max-width: 719px)",
+    "lap"           "screen and (min-width: 720px) and (max-width: 1023px)",
+    "lap-and-up"    "screen and (min-width: 720px)",
+    "portable"      "screen and (max-width: 1023px)",
+    "desk"          "screen and (min-width: 1024px)",
+    "retina"        "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
+) !default;
+
+$menu-items: (
+    "about",
+    "services",
+    "portfolio",
+    "blog",
+    "contact"
+) !default;

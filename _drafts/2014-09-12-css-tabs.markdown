@@ -1,0 +1,21 @@
+---
+layout: post
+title: CSS Tabs
+comments: true
+---
+
+Although I'm not a huge fan of them, tabs are something that I find myself using on a fairly regular basis. Not for my personal projects, but sometimes at work I need them. The thing that's always bothered me about them, is the need for JavaScript. I love JavaScript, I really do, but this to me feels like something that I *should* be able to do without it.
+
+I've always thought of JavaScript like this: You have a functioning site, and JavaScript enhances that function. Perfectly fair, but in most cases in which I find myself using tabs, that *is* the function. It's not an *enhancement*. I have written plenty of fallbacks for browsers without JavaScript enabled, which usually involves some sort of URL parameter being passed in order to set the "active" tab. This technique assumes I have a server-side language to process such thing. But what about on a static site without that? What about a form? Do you really want users reloading the page just to get to the next tab? While the non-JavaScript fallback has always been the standard way of doing things where I currently work, personally I feel that we can just not bother.
+
+It's 2014, how many people really don't have JavaScript enabled? Probably not many. So this got me thinking...why not just use CSS?
+
+## Proof of concept
+As always, this isn't going to be super pretty or anything. It doesn't need to be. I've seen a lot of examples of tabs (and built many myself) that have `<ul>` for the 'tabs' and a bunch of `<div>` tags for the contents. I don't really like this idea. To me, tabs have always seemed like a representation of file folder. Go ahead, get a folder, and you'll see that the tabs, and the body of the folder are one. Pretty simple concept. For the CSS, I felt that using the `:target` selector would be perfectly fine for switching tabs. So, here's what I came up with on Codepen initially:
+
+<p data-height="268" data-theme-id="0" data-slug-hash="yaqIJ" data-default-tab="html" data-user="MarkRabey" class='codepen'>See the Pen <a href='http://codepen.io/MarkRabey/pen/yaqIJ/'>yaqIJ</a> by Mark Rabey (<a href='http://codepen.io/MarkRabey'>@MarkRabey</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//codepen.io/assets/embed/ei.js"></script>
+
+Well, that *almost* works. I mean, once you start clicking on tabs it seems to work fine. *****NOTE*** at this point, I have only tested in Chrome. So if you find that in fact, clicking on tabs does *not* work, keep reading. Hopefully by the end I have a cross-browser solution.
+
+The issue is basically that because I am using `:target`, there is nothing selected when the page loads. I can set an active class or something, but then that class sits there on that element and can only be removed with JavaScript. I could also use JavaScript to 'click' the first tab on page load, but again, the whole reason I'm doing this is so that I don't *need* JavaScript for tabs.

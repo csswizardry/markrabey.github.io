@@ -1,0 +1,16 @@
+/*------------------------------------*\
+    #COVER
+\*------------------------------------*/
+
+.cover {
+    background: url(/images/backgrounds/masthead.jpg)  $color-black;
+    background-attachment: scroll, scroll, scroll, fixed;
+    // background-image: url('images/light-bl.svg'), url('images/light-br.svg'), url('images/overlay.png'), url('../images/banner.jpg');
+    background-position: bottom left, bottom right, top left, top center;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    @include vendor(background-size, cover);
+    color: $color-masthead;
+    cursor: default;
+    padding: 6em 0;
+    text-align: center;
+}

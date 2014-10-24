@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #DIVIDERS
+\*------------------------------------*/
+
+.divider {
+    width: 100%;
+    height: quadruple($spacing-unit--large);
+    background-color: $color-gray-darker;
+    @include vendor(background-size, cover);
+    margin-bottom: $spacing-unit;
+}
+    .divider--desk {
+        background: url(/assets/images/dividers/desk.jpg) center $color-gray-darker;
+
+        @include media-query(lap-and-up) {
+            background-image: url(/assets/images/dividers/desk-medium.jpg);
+            background-attachment: fixed;
+        }
+
+        @include media-query(desk) {
+            background-image: url(/assets/images/dividers/desk-large.jpg);
+        }
+    }
+
+    .divider--notes {
+        background: url(/assets/images/dividers/notes.jpg) center $color-gray-darker;
+
+        @include media-query(lap-and-up) {
+            background-image: url(/assets/images/dividers/notes-medium.jpg);
+            background-attachment: fixed;
+        }
+
+        @include media-query(desk) {
+            background-image: url(/assets/images/dividers/notes-large.jpg);
+        }
+    }

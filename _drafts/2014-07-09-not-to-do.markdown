@@ -1,0 +1,9 @@
+---
+layout: post
+title: Not To Do
+---
+I hate "To Do" apps. Mostly because I hate "To Do" lists. But also because they seem to have become a stupidly common replacment for "Hello World". While I was out of the development world for a few years, I somehow missed the emerging of this trend, and luckily, I never fell into that hole. I do, however, find myself needing to build something simple, just to get the feel for things. I tend to find something different for each thing I'm learning, and that's not proving very successful. The problem is, I don't get to gauge what is better for this purpose. A "To Do" app is actually a great concept for testing. You need front-end, back-end, and storage. So you may build it 5 times to determine you like *X* for storage, or *Y* for a [CSS Framework](/2014/06/12/keep-it-simple/), but regardless of what tools you're using, you're building an app that makes use of all these things. I decided that I wanted to build something that is potentially useful to me, yet fairly small, and simple to build.
+
+For me, 
+
+http://diveintohtml5.info/storage.html

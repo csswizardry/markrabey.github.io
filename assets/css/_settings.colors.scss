@@ -1,0 +1,94 @@
+///*------------------------------------*\
+//    #COLORS
+//\*------------------------------------*/
+
+// Grayscale
+$color-black: #222;
+$color-gray-darkest:  #444;
+$color-gray-darker: #777;
+$color-gray-dark: #aaa;
+$color-gray: #ccc;
+$color-gray-light: #dedede;
+$color-gray-lighter: #efefef;
+$color-gray-lightest: #f8f8f8;
+$color-white: #fff;
+
+// Colors
+$color-highlight:   $color-white;
+$color-tint:        darken($color-white, 3%);
+
+$color-positive:    #3f990f;
+$color-negative:    #9f102e;
+
+
+
+
+// Brand
+$color-brand:       $brand-color;
+
+
+
+
+
+// Links
+$color-links:           $color-brand;
+$color-links-carousel:  $color-gray-lighter;
+
+
+
+
+
+// Text
+// $color-code:            $color-green;
+$color-pre-background:  $color-gray;
+$color-pre:             $color-white;
+
+
+
+
+
+// Buttons
+$color-btn:     $color-links;
+
+
+
+
+
+// Page head
+$color-masthead:                #fff;
+$color-page-head-border:        $color-brand;
+$color-page-head:               #fff;
+// $color-page-head-background:    $color-black;
+$color-page-head-background:    $base-background-color;
+
+
+
+
+
+// Site Nav
+$color-site-nav: $color-white;
+
+
+
+
+
+// Headings
+$color-headings:    $color-brand;
+$color-heading-sub: $color-gray;
+
+
+
+
+
+// Bands
+$color-band-highlight-background:   $color-highlight;
+$color-band-tint-background:        $color-tint;
+
+
+
+
+
+// Boxes
+$color-box-highlight-background:    $color-highlight;
+$color-box-highlight-border:        $color-gray-light;
+$color-box-tint-background:         $color-tint;

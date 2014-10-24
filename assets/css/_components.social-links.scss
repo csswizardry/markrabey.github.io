@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    #SOCIAL-LINKS
+\*------------------------------------*/
+	
+$icon-size: ($base-font-size / 16px) * 2em;
+
+.social-link {
+	font-size: 5em;
+	text-align: center;
+	@include vendor(transition,color 0.4s);
+	@include attention() {
+		text-decoration: none;
+	}
+
+	@include media-query(lap) {
+		font-size: 3em;
+	}
+
+	@include media-query(desk) {
+		font-size: 2em;
+	}
+	
+}

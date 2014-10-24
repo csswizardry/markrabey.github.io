@@ -1,0 +1,188 @@
+/*------------------------------------*\
+    #SITE-NAV
+\*------------------------------------*/
+
+// Internal variables.
+$logo-height:   44px;
+$drop-down-height: (length($menu-items) * $spacing-unit--large);
+
+.site-nav {
+    @extend %clearfix;
+    @include font-size(16px);
+    @include vendor('transition',all 0.4s);
+    padding: $spacing-unit--small;
+    background-color: $color-black;
+
+    @include media-query(lap-and-up) {
+        border-bottom: 2px solid $color-brand;
+        // @include font-size(16px);
+        // border-bottom: none;
+    }
+
+    .page--home & {
+        border-bottom: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        // background: transparent;
+        z-index: 1;
+        opacity: 0.8;
+    }
+
+    // .page--fixed-nav & {
+    //     position: fixed;
+    //     top: 0;
+    //     left: 0;
+    //     right: 0;
+    //     // background-color: $color-white;
+    //     z-index: 1;
+    //     box-shadow: 0 0 4px $color-brand;
+    // }
+}
+
+    .site-nav__home {
+        display: block;
+        float: left;
+        margin: halve($spacing-unit--small);
+        &:hover {text-decoration: none;}
+    }
+
+        .site-nav__logo {
+            display: block;
+            float: left;
+        }
+
+            .site-nav__logo-fill {
+                fill: $color-brand;
+            }
+
+        .site-nav__title {
+            font-size: 14px;
+            color: $color-white;            
+            margin: 0;
+            margin-left: $logo-height + $spacing-unit;
+        }
+
+    /**
+     * On smaller viewports, the nav is a 2x2 grid of links that lies perfectly
+     * fluch with the top and bottom of the home link. On larger viewports, the
+     * nav becomes a single row of links vertically centred to the logo, but
+     * way over to the right.
+     */
+    .site-nav__list {
+        margin:  0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        height: 1px;
+        display: block;
+        float: right;
+        clear: both;
+        text-align: right;
+        @include vendor(transition, height 0.3s ease-in-out);
+
+
+        @include media-query(palm) {
+             &.site-nav__list--expanded {
+                height: $drop-down-height;
+            }
+        }
+
+        @include media-query(lap-and-up) {
+            overflow: visible;
+            clear: none;
+            height: auto;
+            margin-right: halve($spacing-unit);
+        }
+    }
+
+        .site-nav__toggle {
+            @extend .btn, .btn--secondary, .btn--small;
+            display: block;
+            float: right;
+            margin: halve($spacing-unit--small);
+            @include media-query(lap-and-up) {
+                display: none;
+            }
+        }
+
+        .site-nav__item {
+            padding: $spacing-unit--small 0;
+            @include media-query(lap-and-up) {
+                float: left;
+                width: auto;
+                &:last-child a {
+                    padding-right: 0;
+                }
+
+            }
+
+        }
+
+            .site-nav__link {
+                display: block;
+                padding-right: 12px;
+                padding-left:  12px;
+                line-height: halve($logo-height);
+                color: $color-site-nav;
+
+                @include attention() {
+                    text-decoration: none;
+                    color: $color-links;
+                }
+
+                @include media-query(lap-and-up) {
+                    line-height: $logo-height;
+                }
+            }
+
+            /**
+             * The current state for the nav (in large-screen view) is a notched
+             * out triangle lying toward the bottom of the page head. We apply
+             * this styling to a silent class which we then extend out of the
+             * loop below.
+             */
+            %site-nav__current {
+                color: $color-links;
+
+                @include media-query(lap-and-up) {
+
+                    $notch-size: halve($spacing-unit);
+
+                    position: relative;
+
+                    &:before,
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        pointer-events: none;
+                        border-style: solid;
+                        border-color: transparent;
+                    }
+
+                    &:before {
+                        border-width: $notch-size;
+                        border-bottom-color: $color-brand;
+                        margin-left: -$notch-size;
+                        bottom: -$spacing-unit;
+                    }
+
+                    &:after {
+                        border-width: $notch-size - 1;
+                        border-bottom-color: $base-background-color;
+                        margin-left: -($notch-size - 1);
+                        bottom: -($spacing-unit + 2);
+                    }
+
+                }
+
+            }
+
+            @each $page in $menu-items {
+
+                .page--#{$page} .site-nav__#{$page} {
+                    @extend %site-nav__current;
+                }
+
+            }

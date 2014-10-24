@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    #TYPE
+\*------------------------------------*/
+
+/**
+ * Typographical base selectors.
+ */
+
+/**
+ * Headings 1–6.
+ */
+@include headings() {
+    @include font-weight(regular);
+    color: $color-headings;
+
+    footer  & {
+    	color: inherit;
+    }
+}
+
+// Images - will move elsewhere later.
+
+img {
+	max-width: 100%;
+}
+
+code {
+    color: #d88;
+    background-color:  $color-gray-lighter;
+    font-weight: bold;
+    padding: 0 3px;
+}

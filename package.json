@@ -1,0 +1,26 @@
+{
+  "name": "markrabey.com",
+  "version": "4.3.0",
+  "description": "",
+  "main": "_site/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarkRabey/markrabey.github.io"
+  },
+  "author": "Mark Rabey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarkRabey/markrabey.github.io/issues"
+  },
+  "homepage": "https://markrabey.com",
+  "devDependencies": {
+    "grunt-exec": "^0.4.6",
+    "grunt-contrib-copy": "^0.6.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-connect": "^0.8.0"
+  }
+}

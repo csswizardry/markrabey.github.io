@@ -1,0 +1,46 @@
+/*------------------------------------*\
+    #LIST-UI
+\*------------------------------------*/
+
+/**
+ * The UI list object creates blocky list items with a keyline separator out of
+ * a `ul` or `ol`.
+ */
+
+
+$list-ui-padding:         $spacing-unit;
+
+$list-ui-border-width:    1px !default;
+$list-ui-border-style:    solid !default;
+$list-ui-border-color:    #ccc !default;
+
+$enable-list-ui--tiny:    false !default;
+$enable-list-ui--small:   false !default;
+$enable-list-ui--large:   false !default;
+$enable-list-ui--huge:    false !default;
+
+.list-ui,
+%list-ui,
+    .list-ui__item,
+    %list-ui__item {
+        border: 0 $list-ui-border-style $list-ui-border-color;
+    }
+
+.list-ui,
+%list-ui {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+    border-top-width: $list-ui-border-width;
+
+    > li {
+        @extend %list-ui__item;
+    }
+
+}
+
+    .list-ui__item,
+    %list-ui__item {
+        padding: $list-ui-padding;
+        border-bottom-width: $list-ui-border-width;
+    }

@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    #POST
+\*------------------------------------*/
+
+// .post {
+// }
+
+    .post__date {
+    	display: block;
+        color: $color-gray-dark;
+        margin-bottom: $spacing-unit--small;
+    }
+
+    .post__title {
+        margin-bottom: 0;
+
+    }
+
+	.post__img {
+		padding: 6px;
+		border: 1px solid $color-gray;
+		margin-right: $spacing-unit;
+
+		.page--home & {
+			display: none;
+		}
+	}
+
+		.post__img--left {
+			float: left;
+		}
+
+		.post__img--right {
+			float: right;
+		}
+
+//     .post__image {
+//         // margin: 0 auto $spacing-unit;
+//     }
+
+//     .post__image--centered {
+//         display: block;
+//         margin: 0 auto $spacing-unit;
+//     }

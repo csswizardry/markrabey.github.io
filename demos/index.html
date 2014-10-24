@@ -1,0 +1,24 @@
+---
+layout: page
+title: Demos
+---
+<div class="wrapper">
+    <div class="grid  grid--large">
+        <div class="[ grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds ]  mb">
+			<header>
+				I'm working on getting more demos on here as soon as I can! Please be patient.
+			</header>
+            <section class="post">
+                <ul class="list-ui  post__list">  
+                    {% for demo in site.demos limit:3 %}  
+                       <li class="list-ui__item">
+                           <h3 class="post__title"><a href="{{ demo.url }}">{{ demo.title }}</a></h3>
+                        </li>
+                    {% endfor %}  
+                </ul>
+            </section>
+        </div>
+
+        
+    </div> <!-- close .grid -->
+</div> <!-- close .wrapper -->

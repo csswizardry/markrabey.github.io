@@ -1,0 +1,22 @@
+/*------------------------------------*\
+    #PAGE
+\*------------------------------------*/
+
+html {
+    font-size: ($base-font-size / 16px) * 1em;
+    line-height: $base-line-height / $base-font-size;
+    background-color: $base-background-color;
+    color: $base-text-color;
+    overflow-y: scroll;
+    min-height: 100%;
+    -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+     -webkit-font-smoothing: antialiased;
+
+ }
+
+html {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}

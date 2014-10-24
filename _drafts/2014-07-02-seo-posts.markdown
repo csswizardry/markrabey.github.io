@@ -1,0 +1,45 @@
+---
+layout: post
+title: SEO Posts
+---
+The world of <abbr title="Search Engine Optimization">SEO</abbr> is ever changing, and what makes a site attractive to a search engine is quite complicated. There are things like content, of course. Search engines like sites that are regularly updated and don't become stale quickly. They also like sites that have a layout that is easy for them read and understand. We're not going to get into ***everything*** that makes a site appealing to a search engine, we're just going to look at the layout, specifically the HTML, meta tags, and maybe a few other 'quick wins' you can get on your site.
+
+___
+##Key HTML Elements
+There are a few key thing that really, dare I say it, *must* be included in your HTML. Sure, the page might look perfectly fine to you, but missing these key elements will drastically affect how your site is viewed by search engines.
+
+Key Tags:
+
+* ~~Title Tags~~
+* Meta Description
+* Image Tags
+
+http://moz.com/beginners-guide-to-seo/basics-of-search-engine-friendly-design-and-development
+
+##Links
+___
+##Canonicalization
+http://moz.com/learn/seo/canonicalization
+___
+##URL Structures
+http://www.searchenginejournal.com/five-steps-to-seo-friendly-site-url-structure/59813/
+___
+##Status Codes
+___
+##Robot Control
+___
+##Sitemaps
+___
+##Metadata
+
+
+
+Key Elements
+
+Links
+
+URL Structure
+
+Status Codes
+
+Canonicalization

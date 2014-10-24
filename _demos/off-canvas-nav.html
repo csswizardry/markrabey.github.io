@@ -1,0 +1,109 @@
+---
+title: Off Canvas Navigation
+permalink: /demos/off-canvas-nav/
+---
+
+<nav>
+    <ul>
+      <li><a href="#">Item 1</a></li>
+      <li><a href="#">Item 2</a></li>
+      <li><a href="#">Item 3</a></li>
+      <li><a href="#">Item 4</a></li>
+      <li><a href="#">Item 5</a></li>
+    </ul>
+</nav>
+
+<a id="nav-toggle" href="#" class="nav-toggle">Menu</a>
+
+
+<p>
+	Meh iPhone Neutra, whatever mustache roof party Tonx shabby chic. Tofu selvage meggings, DIY semiotics kale chips Portland. Sustainable leggings Shoreditch 90's, trust fund asymmetrical American Apparel. Kogi 3 wolf moon whatever, mustache Shoreditch bitters tote bag you probably haven't heard of them mumblecore Cosby sweater distillery fixie. Next level drinking vinegar roof party leggings Banksy XOXO, brunch DIY pop-up. Keffiyeh butcher Neutra kitsch. Hella hoodie Banksy paleo, lo-fi keytar fingerstache.
+</p>
+
+<p>
+	90's seitan whatever artisan, authentic paleo fap swag bicycle rights. Cornhole yr Kickstarter, lo-fi master cleanse stumptown tote bag. Cred asymmetrical vegan vinyl Thundercats forage wolf leggings PBR. Bushwick Portland Wes Anderson literally next level twee fashion axe 90's. Synth organic stumptown, cliche Shoreditch ugh 8-bit wolf letterpress umami slow-carb. Vice cardigan hella shabby chic Tumblr Pinterest. Flannel dreamcatcher small batch, Helvetica freegan PBR Kickstarter ugh selvage ethical chambray.
+</p>
+
+<p>
+	Fingerstache skateboard selfies, letterpress Portland seitan roof party hella stumptown. Deep v polaroid bitters locavore dreamcatcher lomo plaid Odd Future salvia, banh mi cray. Drinking vinegar salvia mumblecore, Truffaut artisan pop-up cray selvage XOXO Thundercats tofu gastropub ugh. Kitsch Vice drinking vinegar blog. YOLO craft beer synth, fingerstache kitsch mustache meh Etsy bespoke hoodie actually Tonx Williamsburg Cosby sweater. Butcher church-key distillery, viral lo-fi fingerstache jean shorts bicycle rights gastropub. Literally irony art party photo booth shabby chic, Neutra aesthetic typewriter.
+</p>
+
+<p>
+	Art party kale chips seitan, chambray Kickstarter kogi Cosby sweater meggings Austin craft beer. Fashion axe ethical mustache, Banksy narwhal forage post-ironic PBR&B hashtag pour-over banjo selfies kogi small batch. Deep v Cosby sweater mlkshk meggings, Austin Shoreditch Brooklyn. Swag 3 wolf moon fap cardigan pickled Cosby sweater hella Schlitz, mlkshk 8-bit keffiyeh yr. Marfa High Life Pitchfork Etsy sartorial Thundercats distillery gluten-free, lomo 8-bit chambray cliche Banksy. Sriracha artisan flannel, mumblecore hashtag Portland actually semiotics kogi aesthetic vegan. Polaroid locavore butcher, put a bird on it mlkshk lo-fi Shoreditch dreamcatcher cray master cleanse banjo.
+</p>
+
+
+<style>
+	html,body {
+		margin: 0;
+	}
+	body {
+		margin-top: 50px;
+	}
+	nav {
+	  background-color: #2d2f33;
+	  display: block;
+	  height: 100%;
+	  overflow: auto;
+	  position: fixed;
+	  right: -20em;
+	  font-size: 15px;
+	  top: 0;
+	  width: 20em;
+	  z-index: 2000;
+	  transition: right 0.3s ease-in-out 0s;
+	  -webkit-transition: right 0.3s ease-in-out 0s;
+	  -moz-transition: right 0.3s ease-in-out 0s;
+	  -o-transition: right 0.3s ease-in-out 0s;
+	}
+	nav ul {
+	  padding: 0;
+	}
+	nav ul li {
+	  list-style-type: none;
+	  padding-left: 5px;
+	}
+	nav a {
+	  display: block;
+	  color: #ffffff;
+	  text-decoration: none;
+	  padding: 10px 0;
+	}
+	nav li:hover {
+	  background-color: #757a84;
+	}
+	.nav-expanded nav {
+	  right: 0;
+	}
+	.nav-toggle {
+	  background-color: #2d2f33;
+	  color: #ffffff;
+	  padding: 10px;
+	  text-decoration: none;
+	  display: block;
+	  position: fixed;
+	  top: 0;
+	  right: 0;
+	  transition: right 0.3s ease-in-out 0s;
+	  -webkit-transition: right 0.3s ease-in-out 0s;
+	  -moz-transition: right 0.3s ease-in-out 0s;
+	  -o-transition: right 0.3s ease-in-out 0s;
+	}
+	.nav-expanded {
+	  margin-right: 0em;
+	  transition: right 0.3s ease-in-out 0s;
+	  -webkit-transition: right 0.3s ease-in-out 0s;
+	  -moz-transition: right 0.3s ease-in-out 0s;
+	  -o-transition: right 0.3s ease-in-out 0s;
+	}
+	.nav-expanded .nav-toggle {
+	  right: 18.7em;
+	}
+</style>
+
+<script>
+	document.getElementById('nav-toggle').onclick=function(e){
+	  e.preventDefault();
+	  document.body.classList.toggle('nav-expanded');  
+	};
+</script>

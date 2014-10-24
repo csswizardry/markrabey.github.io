@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    #PAGE-FOOT
+\*------------------------------------*/
+
+.page-foot {
+    // height: 120px;
+    clear:both;
+    background-color: $color-black;
+    color: $color-white;
+
+    > .wrapper {
+            padding: $spacing-unit;
+
+        }
+}
