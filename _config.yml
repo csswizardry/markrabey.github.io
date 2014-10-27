@@ -42,7 +42,7 @@ include:
   - .nojekyll
 
 exclude:
-  - "Gruntfile.js"
+  - "gruntfile.js"
   - "Rakefile"
   - "node_modules"
   - "package.json"

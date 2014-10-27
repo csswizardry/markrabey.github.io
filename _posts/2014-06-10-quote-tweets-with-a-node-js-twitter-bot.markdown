@@ -3,6 +3,7 @@ layout: post
 title: Quote Tweets with a Node.js Twitter Bot
 date: 2014-06-10 09:48:44.000000000 -04:00
 redirect_from: /2014/06/10/quote-tweets-with-a-node-js-twitter-bot/
+tags: node.js, javascript, twitter
 ---
 A short time ago I wrote about [how to build a Twitter bot with Node.js](/blog/2014/05/09/build-a-twitter-bot-with-node-js/). Making use of the Twitter API, I have a bot that searches for Tweets with either #CFML or #ColdFusion, then retweets the most recent one. Pretty simple, and maybe not even 100% practical, but it's all I was looking to do. A reader asked me if it was possible to Quote Tweet rather than Retweet.
 

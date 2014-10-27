@@ -4,6 +4,7 @@ date: 2014-08-15 14:42:00.000000000 -04:00
 redirect_from:
     - /2014/08/15/the-full-stack-web-developer/
     - /blog/2014/08/13/the-full-stack-web-developer/
+tags: full-stack, front-end, back-end, html, css
 ---
 The Internet has changed a lot over the years. Not just in the way we use it, but also in the way we build it. As a result, we have new job functions being created almost daily. Just a few years ago, you needed a **web designer** to create the look and feel of a site, and a **web developer** to code the front-end and back-end scripts to make the site work. Back then, websites were charged based on the number of pages. Something I can only assume was borrowed from the print industry.
 

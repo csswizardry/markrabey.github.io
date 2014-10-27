@@ -3,6 +3,7 @@ layout: post
 title: Build a Twitter Bot With Node.js
 date: 2014-05-09 16:15:18.000000000 -04:00
 redirect_from: /2014/05/09/build-a-twitter-bot-with-node-js/
+tags: node.js, javascript, twitter
 ---
 I was really hoping to do this as a learning experiment. I guess what I did learn, is that doing simple things with the Twitter API is actually ***really*** easy.
 ___

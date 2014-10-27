@@ -5,6 +5,7 @@ date: 2014-07-30 11:28:26.000000000 -04:00
 redirect_from:
     - /2014/07/30/people-are-not-resources/
     - /blog/2014/07/14/people-are-not-resources/
+tags: management, people, scrum, agile, team
 ---
 While I like the fact that some changes are starting to happen with our processes at work, I also find my self rather disappointed in some of the changes. They're not happening as fast as I'd like, but that's something I just need to come to terms with. Some of the changes that I was told were going to happen are now seeming like a pipe-dream. That's honestly a little hurtful. But the thing that's bothering me the most, is some of the new 'lingo' I'm hearing in meetings and in general conversation around the office.
 
