@@ -3,6 +3,7 @@ layout: post
 title: Lean Software Development
 date: 2014-07-08 09:48:08.000000000 -04:00
 comments: true
+tags: management, people, scrum, agile, team
 ---
 Back in May, I wrote a post called *[The Process and the Team](/blog/2014/05/07/the-process-and-the-team/)*. It was kind of an extension of an even earlier post, *[Recognizing Team Dysfunctions](/blog/2014/04/21/recognizing-team-dysfunctions/)*. In that I mentioned a few methodologies we could possibly use instead of Scrum, which I still firmly believe won't work for our currently team. In writing that post, I read a lot about Lean Software Development. Now, a few months later, with much consideration, I still think it's a great option to consider.
 

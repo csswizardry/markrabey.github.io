@@ -3,6 +3,7 @@ layout: post
 title: Keep it simple
 date: 2014-06-12 09:22:56.000000000 -04:00
 comments: true
+tags: css, framework, layout, simple
 ---
 I started out by want to create a [simple CSS grid](/blog/2014/04/07/a-simple-css-grid/). Eventually I decided to turn that into a [CSS framework](/blog/2014/05/20/css-frameworks/). Then I wrote about [making the grid responsive](/blog/2014/05/26/making-the-grid-responsive/). While these posts are all very relevant, I have decided that really, in the end all I want is a grid.
 

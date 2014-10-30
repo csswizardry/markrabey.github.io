@@ -1,8 +1,7 @@
 ---
-layout: post
-tags: learning, html, web development
+tags: learning, full-stack, html, css, javascript, management
 ---
-<!-- <img src="/content/images/blog/2014/Sep/coding.jpg" alt="Learn to code" class="post__img  post__img--left" /> -->
+
 As a developer, I often hear that developers need to keep up to date with new technologies. They need to be continuously learning new things. For a lot of people, this seems to raise a few questions, the most common of which seem to be: **why**, **when**, and **how**?
 
 These are all very valid questions, and I honestly haven't really thought about deep seeded answers to them, which is actually why I'm writing this post. Although I personally do try to learn new things, and I tell my co-workers that they should too, I've never really thought about why, how, or when this should be done.
