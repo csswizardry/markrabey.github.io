@@ -1,4 +1,5 @@
 ---
+layout: post
 tags: css, html, grid layout
 ---
 

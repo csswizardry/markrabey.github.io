@@ -3,7 +3,7 @@ layout: post
 title: CSS Frameworks
 date: 2014-05-16 20:25:47.000000000 -04:00
 comments: true
-tags: css, html, grid layout, frameworks
+tags: css, html, frameworks, grid, layout
 ---
 I've done it again. Sort of. I've worked with something long enough to develop it into a great proof of concept, then more or less abandon it. This time it was my [CSS Grid](/blog/2014/04/07/a-simple-css-grid/). I haven't totally given up on it, I will still use it and develop it over time, but I'm putting it on the back burner. What I initially planned on build was *just* a grid. But there is a lot more to a page than the grid.
 

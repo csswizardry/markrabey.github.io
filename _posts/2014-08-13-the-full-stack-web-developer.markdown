@@ -1,4 +1,5 @@
 ---
+layout: post
 title: The Full-Stack Web Developer
 date: 2014-08-15 14:42:00.000000000 -04:00
 redirect_from:

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: HTML Basics
 tags: html, semantics, layout, basics, tutorial
 ---

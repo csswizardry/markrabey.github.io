@@ -1,3 +1,7 @@
+---
+layout: post
+tags: learning, html, web development
+---
 <!-- <img src="/content/images/blog/2014/Sep/coding.jpg" alt="Learn to code" class="post__img  post__img--left" /> -->
 As a developer, I often hear that developers need to keep up to date with new technologies. They need to be continuously learning new things. For a lot of people, this seems to raise a few questions, the most common of which seem to be: **why**, **when**, and **how**?
 
