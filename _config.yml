@@ -49,7 +49,7 @@ exclude:
   - "bower_components"
   - "bower.json"
   - "assets/css/markrabey.scss"
-  - "assets/css/markrabey.min.css.map"
+  # - "assets/css/markrabey.min.css.map"
 
 gems:
     - jekyll-redirect-from
