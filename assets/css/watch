@@ -1,5 +1,0 @@
-#!/bin/sh
-
-sass --watch markrabey.scss:markrabey.min.css --style compressed --precision 9
-
-exit 0
