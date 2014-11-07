@@ -75,6 +75,17 @@ page-class: page--home
             <div class="[ box  box--highlight ]  mb">
                 {% include job-listings.html %}
             </div>
+
+            <div class="text-center">
+                <!-- Page Rectangle -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:300px;height:250px"
+                     data-ad-client="ca-pub-1949517550744410"
+                     data-ad-slot="1418843683"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
         </div>
     </div> <!-- close .grid -->
 </div> <!-- close .wrapper -->

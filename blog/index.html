@@ -3,39 +3,33 @@ layout: page
 title: Blog
 page-class: page--blog
 ---
-<div class="grid  grid--large">
-    <div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
-        <section class="post">
-            <ul class='list-ui  post__list  mb'>
-                {% for post in paginator.posts %}
-                <li class="list-ui__item">
-                    <h2 class="post__title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-                    <time class="post__date" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%A, %B %d, %Y" }}</time>
-                    <p class="post__excerpt">{{ post.excerpt | remove: '<p>' | remove: '</p>' | truncatewords:75}}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
+<section class="post">
+    <ul class='list-ui  post__list  mb'>
+        {% for post in paginator.posts %}
+        <li class="list-ui__item">
+            <h2 class="post__title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <time class="post__date" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%A, %B %d, %Y" }}</time>
+            <p class="post__excerpt">{{ post.excerpt | remove: '<p>' | remove: '</p>' | truncatewords:75}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 
+<!-- Pagination links -->
+<ol class="grid" data-ui-component="Pagination">
 
-        <!-- Pagination links -->
-        <ol class="grid" data-ui-component="Pagination">
+    <li class="[ grid__item  grid__item--lap-and-up-one-half ]  mb">
+        {% if paginator.next_page %}
+            <a href="/blog/page/{{paginator.next_page}}" class="btn  btn--full  btn--secondary">Older articles</a>
+        {% endif %}
 
-            <li class="[ grid__item  grid__item--lap-and-up-one-half ]  mb">
-                {% if paginator.next_page %}
-                    <a href="/blog/page/{{paginator.next_page}}" class="btn  btn--full  btn--secondary">Older articles</a>
+        {% if paginator.previous_page %}
+            <li class="grid__item  grid__item--lap-and-up-one-half  mb">
+                {% if paginator.previous_page == 1 %}
+                    <a href="/blog/" class="btn  btn--full">Newer articles</a>
+                {% else %}
+                    <a href="/blog/page/{{paginator.previous_page}}" class="btn  btn--full">Newer articles</a>
                 {% endif %}
+        {% endif %}
 
-                {% if paginator.previous_page %}
-                    <li class="grid__item  grid__item--lap-and-up-one-half  mb">
-                        {% if paginator.previous_page == 1 %}
-                            <a href="/blog/" class="btn  btn--full">Newer articles</a>
-                        {% else %}
-                            <a href="/blog/page/{{paginator.previous_page}}" class="btn  btn--full">Newer articles</a>
-                        {% endif %}
-                {% endif %}
-
-        </ol>
-    </div>
-</div>
-    
+</ol>
