@@ -2,6 +2,7 @@
 layout: post
 title: CSS Transitions
 date: 2014-04-14 12:15:07.000000000 -04:00
+tags: css, less, mixins
 ---
 Wow, I missed something. Or at least I was thinking about it backwards at the time of writing about [LESS mixins](/blog/2014/04/13/less-mixins/) ([and this update to it](/blog/2014/04/14/a-little-update-to-transitions/)). I totally missed on how CSS transitions actually work, and what the values are. I mean, I still achieved my desired result, but I was off on actual implementation.
 

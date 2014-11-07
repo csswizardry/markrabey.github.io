@@ -2,6 +2,7 @@
 layout: post
 title: A little update to .transitions()
 date: 2014-04-14 08:43:46.000000000 -04:00
+tags: less, mixins, css
 ---
 In my [last past](/blog/2014/04/13/less-mixins/), I talked about LESS mixins. I had made a mixin for transitions. Something super simple, it looked like this:
 
