@@ -5,9 +5,163 @@
     <description>I try to make the web a better place by writing the best possible code I can, I trying to share my knowledge with others.</description>
     <link>http://markrabey.com/</link>
     <atom:link href="http://markrabey.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 07 Nov 2014 08:37:09 -0500</pubDate>
-    <lastBuildDate>Fri, 07 Nov 2014 08:37:09 -0500</lastBuildDate>
+    <pubDate>Fri, 07 Nov 2014 11:46:46 -0500</pubDate>
+    <lastBuildDate>Fri, 07 Nov 2014 11:46:46 -0500</lastBuildDate>
     <generator>Jekyll v2.3.0</generator>
+    
+      <item>
+        <title>Writing Good CSS</title>
+        <description>&lt;p&gt;I’m always trying to learn new things. However, more importantly, I also try to learn ways to &lt;em&gt;improve&lt;/em&gt; the way I already do things. Both at my full-time gig and for client side-projects, the thing I’ve always wanted to improve was my CSS. I’ve always felt I’m pretty good when it comes to CSS, but I’ve always found it messy to read, and often hard to maintain. What I’ve been trying to do, is find out what makes good, readable, maintainable CSS. I think I’ve come up with (and found) some ways to make this all possible.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problems&quot;&gt;The Problems&lt;/h2&gt;
+&lt;p&gt;There are several things that bother me in CSS. The most common annoyances I have are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;repeating common code&lt;/li&gt;
+  &lt;li&gt;browser prefixes&lt;/li&gt;
+  &lt;li&gt;lack of comments&lt;/li&gt;
+  &lt;li&gt;over qualified selectors&lt;/li&gt;
+  &lt;li&gt;poor class names&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When is comes to my own projects, I take full responsibility for my code. I rarely comment my CSS, and really often treat it as an afterthought. That’s just wrong. For a long time I figured that my class names are “semantic” and it’s just me doing things, so there’s no need to explain the code, or little “hacks”, or anything. Coming back to code on a long-standing project quickly proves this theory to be &lt;em&gt;very&lt;/em&gt; wrong.&lt;/p&gt;
+
+&lt;p&gt;When it comes to code at work, I can’t take all the blame. In fact, part of the issue is the number of people who have had there hands in there. Currently our team has 7 of us who at some point have written CSS for our sites, with another 6-8 that have come and gone over the years. Each member of the team has varying levels of knowledge and ability regarding CSS. As well, as is often the case with long-standing projects, some of the code is &lt;strong&gt;old&lt;/strong&gt;. A lot of it is pre-CSS3, or pre-whatever-trend-was-cool-5-years-ago. In both cases there were often different ways of doing things at the time it was written, and in some cases, a natural lack of knowledge. I’ve also learned that some programmers will insist that their code is “self-documenting”. If you’re unfamiliar with that term, it translates to “my code has no comments”.&lt;/p&gt;
+
+&lt;h2 id=&quot;solutions&quot;&gt;Solutions&lt;/h2&gt;
+&lt;p class=&quot;text-center&quot;&gt;
+&lt;img src=&quot;/content/images/blog/2014/Sep/css-guidelines.png&quot; alt=&quot;CSS Guidelines&quot; class=&quot;post__img&quot; /&gt; 
+&lt;/p&gt;
+
+&lt;p&gt;While nothing is perfect, I believe there are things we can do to improve our code. I recently came across &lt;a href=&quot;http://cssguidelin.es&quot; target=&quot;_blank&quot;&gt;CSS Guidelines&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/csswizardry&quot; target=&quot;_blank&quot;&gt;Harry Roberts&lt;/a&gt;. I’m still working on reading it all in detail, but so far it holds true to the promise of “High-level advice and guidelines for writing sane, manageable, scalable CSS”.&lt;/p&gt;
+
+&lt;h3 id=&quot;comments&quot;&gt;Comments&lt;/h3&gt;
+&lt;p&gt;While &lt;a href=&quot;http://cssguidelin.es&quot; target=&quot;_blank&quot;&gt;CSS Guidelines&lt;/a&gt; gives specifics on comment styles, I personally just try to put &lt;strong&gt;&lt;em&gt;something&lt;/em&gt;&lt;/strong&gt; in to tell future me what I was thinking. I start every component with a comment representing the title, them &lt;em&gt;details&lt;/em&gt; on the intent of the component. When using a preprocessor I style specific comments to either be included with the CSS, or skipped by the preprocessor. I’m still working on this part, and trying to get into the habit of putting &lt;em&gt;something&lt;/em&gt;, &lt;strong&gt;&lt;em&gt;anything&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;object-orientation&quot;&gt;Object-orientation&lt;/h3&gt;
+&lt;p&gt;Object-orientation is a programming paradigm that breaks big things into small things. From Wikipedia:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Object-oriented programming (OOP) is a programming paradigm that represents the concept of ‘objects’ […] which are usually instances of classes, [and] are used to interact with one another to design applications and computer programs.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When it comes to CSS, we call this object-oriented CSS, or &lt;em&gt;OOCSS&lt;/em&gt;. The basic concept breaks apart the &lt;em&gt;structure&lt;/em&gt; of the element, from the &lt;em&gt;skin&lt;/em&gt; of the element. This means we can easily reuse any recurring design patterns, without necessarily reusing the specific implementation details at the same time. OOCSS focuses heavily on the reuse of code, which makes us faster, and can keep the size of our codebase down.&lt;/p&gt;
+
+&lt;p&gt;I think of structural aspects like skeletons; common frames that give constructs known as &lt;em&gt;object&lt;/em&gt;. These objects are simple design patterns that are free from any cosmetics. We abstract the structure from a set of components in order to have a generic object.&lt;/p&gt;
+
+&lt;p&gt;We then optionally add the “skin” layer to our structure so we can give the abstractions a specific look and feel. For example (taken from &lt;a href=&quot;http://cssguidelin.es&quot; target=&quot;_blank&quot;&gt;CSS Guidelines&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/**
+ * A simple, design-free button object. Extend this object with a `.btn--*` skin
+ * class.
+ */
+.btn {
+    display: inline-block;
+    padding: 1em 2em;
+    vertical-align: middle;
+}
+
+/**
+ * Positive buttons’ skin. Extends `.btn`.
+ */
+.btn--positive {
+    background-color: green;
+    color: white;
+}
+
+/**
+ * Negative buttons’ skin. Extends `.btn`.
+ */
+.btn--negative {
+    background-color: red;
+    color: white;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we see how the &lt;code&gt;.btn&lt;/code&gt; class simply provides structure to an element, but has nothing concerning cosmetics. We can &lt;em&gt;extend&lt;/em&gt; &lt;code&gt;.btn&lt;/code&gt; with a second class, like &lt;code&gt;.btn--positve&lt;/code&gt; to give that element more specific styling:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;button class=&quot;btn  btn--positive&quot;&amp;gt;OK&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I much prefer to use multiple classes in my HTML, over using something like &lt;code&gt;@extend&lt;/code&gt; in a preprocessor. This gives me more visibility in my HTML allowing me to quickly see what classes are applied to my element. It also means that my classes are not tightly bound to other styles in my CSS. It sort of helps OOCSS following the concepts of &lt;em&gt;encapsulation&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;bem&quot;&gt;BEM&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;BEM&lt;/em&gt; (&lt;em&gt;Block, Element, Modifier&lt;/em&gt;), is a front-end methodology developed at Yandex. BEM is actually a very complete methodology, and I honestly haven’t dug into all the details, but what I’m concerned with is simply the naming convention. I’m using BEM-&lt;em&gt;like&lt;/em&gt; naming conventions. The concept is the same, but the exact syntax may differ slightly.&lt;/p&gt;
+
+&lt;p&gt;BEM places classes into three groups:
+- Block: the root or base of a component
+- Element: a component inside of a Block
+- Modifier: a variation or extension of the Block&lt;/p&gt;
+
+&lt;p&gt;A very basic analogy (&lt;strong&gt;not&lt;/strong&gt; an example):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.dog {}
+.dog__tail {}
+.dog--small {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Elements are delimited with two underscores (__), and modifiers are delimited with two hyphens (–).&lt;/p&gt;
+
+&lt;p&gt;In the above analogy, we see that &lt;code&gt;.dog&lt;/code&gt; is the Block, the root of element. Then, &lt;code&gt;.dog__tail&lt;/code&gt; is an Element, it is a smaller part of a &lt;code&gt;.dog&lt;/code&gt; Block. Lastly, &lt;code&gt;.dog--small&lt;/code&gt; is Modifier, a specific variation of the &lt;code&gt;.dog&lt;/code&gt; Block. You can also apply Modifiers to Elements. for example, we could have &lt;code&gt;.dog__tail--short&lt;/code&gt; to again, specify a variation on the &lt;code&gt;dog__tail&lt;/code&gt; Element.&lt;/p&gt;
+
+&lt;p&gt;In some cases I may want multiple words for Blocks, Elements or Modifiers. In any case, these are separated with a single hyphen (-), and classes are always written in &lt;em&gt;lowercase&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;preprocessors&quot;&gt;Preprocessors&lt;/h3&gt;
+&lt;p&gt;I’ve been spending time working CSS Preprocessors into my work flow, and so far, it’s been incredibly valuable. CSS Preprocessors take code that is written in a preprocessed language and convert them to good old CSS. They are &lt;em&gt;not&lt;/em&gt; CSS, which means they are not bound be the same rules and limitations of CSS. While CSS is great, it doesn’t always allow us to easily do the things we’d like to do.&lt;/p&gt;
+
+&lt;p&gt;For example, one thing that would be really nice in CSS is &lt;em&gt;variables&lt;/em&gt;. Maybe you want something to have the left margin of one element the same as the width of another, and suddenly someone decides that those numbers need to change. Since they’re the same number, and your layout might rely on that number, you have to change it more than one place. But with a &lt;em&gt;varibale&lt;/em&gt; you could change it in just &lt;em&gt;one&lt;/em&gt; place and have it reflect in the whole layout. Of course, there is a lot more to offered in preprocessors than variables, but that’s a start!&lt;/p&gt;
+
+&lt;p&gt;You obviously don’t &lt;em&gt;have&lt;/em&gt; to use a preprocessor, but I think you’ll find most people who do, won’t go back. I know I won’t. The gain in flexibility, and increased readability are something I just can’t give up. Simply being able to use &lt;em&gt;variables&lt;/em&gt; and &lt;em&gt;&lt;a href=&quot;/blog/2014/04/14/css-transitions/&quot;&gt;mixins&lt;/a&gt;&lt;/em&gt; is enough to keep me hooked.&lt;/p&gt;
+
+&lt;p&gt;There are several preprocessors available, but the only 2 I’ve really looked at and used at all are &lt;em&gt;&lt;a href=&quot;http://lesscss.org&quot;&gt;LESS&lt;/a&gt;&lt;/em&gt; and &lt;em&gt;&lt;a href=&quot;http://sass-lang.com/&quot;&gt;SASS&lt;/a&gt;&lt;/em&gt;. Please take a look, and consider adding one of these to work flow, you won’t look back. In an upcoming post, I’ll go into more detail on the 2, and what I like or dislike with each one.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;My real point here, is that CSS &lt;em&gt;can&lt;/em&gt; be better. Everything &lt;em&gt;can&lt;/em&gt; be better. Someone told me recently in a comment on a post on Reddit that “CSS doesn’t have semantics”. I wholeheartedly disagree. CSS 100%, without a doubt &lt;em&gt;can&lt;/em&gt; be semantic. Using OOCSS and BEM does, in fact, give your CSS very semantic meaning. This doesn’t mean it’s &lt;em&gt;easy&lt;/em&gt; right off the bat, but it’s well worth exploring. Combine that with CSS Preprocessors, and you have the potential for very readable, maintainable, and scalable CSS. I’d also like to note that this not only makes you CSS (preprocessed or not) more readable, but also makes your HTML more readable, by applying &lt;em&gt;semantic&lt;/em&gt; class names to elements.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;Ok, maybe that was a lot - to summarize, write better CSS by doing this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Object Oriented CSS
+– each class does one thing
+– it does it well, it does it right&lt;/li&gt;
+  &lt;li&gt;Block, Element, Modifier (BEM) style class names
+    &lt;ul&gt;
+      &lt;li&gt;Block: &lt;code&gt;.grid&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Element: &lt;code&gt;.grid__item&lt;/code&gt; (2 underscores)&lt;/li&gt;
+      &lt;li&gt;Modifier: &lt;code&gt;.grid--wide&lt;/code&gt; (2 hyphens)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Preprocessors are awesome, check them out
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://lesscss.org&quot;&gt;LESS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://sass-lang.com/&quot;&gt;SASS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;or find others: &lt;a href=&quot;http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time&quot;&gt;8 CSS preprocessors to speed up development time&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Eventually, I will write more detailed posts about each of these areas. In the meantime, really, take a look at &lt;a href=&quot;http://cssguidelin.es&quot; target=&quot;_blank&quot;&gt;CSS Guidelines&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 07 Nov 2014 00:00:00 -0500</pubDate>
+        <link>http://markrabey.com/blog/2014/11/07/writing-good-css</link>
+        <guid isPermaLink="true">http://markrabey.com/blog/2014/11/07/writing-good-css</guid>
+        
+        <category>css,</category>
+        
+        <category>less,</category>
+        
+        <category>sass,</category>
+        
+        <category>bem,</category>
+        
+        <category>oocss</category>
+        
+        
+      </item>
     
       <item>
         <title>HTML Basics</title>
@@ -3346,6 +3500,12 @@ There isn’t major change here, except that my grid is now included in theme. Y
         <link>http://markrabey.com/blog/2014/04/14/css-transitions</link>
         <guid isPermaLink="true">http://markrabey.com/blog/2014/04/14/css-transitions</guid>
         
+        <category>css,</category>
+        
+        <category>less,</category>
+        
+        <category>mixins</category>
+        
         
       </item>
     
@@ -3379,6 +3539,12 @@ I realised I was way off in my understanding of CSS transition properties. Take 
         <pubDate>Mon, 14 Apr 2014 08:43:46 -0400</pubDate>
         <link>http://markrabey.com/blog/2014/04/14/a-little-update-to-transitions</link>
         <guid isPermaLink="true">http://markrabey.com/blog/2014/04/14/a-little-update-to-transitions</guid>
+        
+        <category>less,</category>
+        
+        <category>mixins,</category>
+        
+        <category>css</category>
         
         
       </item>
