@@ -3,6 +3,7 @@ layout: post
 title: Off Canvas Navigation
 date: 2014-04-13 08:50:44.000000000 -04:00
 redirect_from: /2014/04/13/off-canvas-navigation/
+tags: css, navigation, javascript
 ---
 I wanted to make one, so I did. With some CSS transitions, and just a few lines of jQuery, it's really quite simple.
 

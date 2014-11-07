@@ -2,6 +2,7 @@
 layout: post
 title: Looping with LESS
 date: 2014-04-10 09:24:54.000000000 -04:00
+tags: css, less
 ---
 Lately, I've been experiment with some new build tools. These aren't actually "new", but rather "new to me". I've mostly been playing with [LESS](http://lesscss.org) and [Grunt](http://gruntjs.com). Grunt accomplishes all sorts of things like minification, linting, and compiling LESS files for me. As I've been playing with LESS, I'm discovering more and more things I can do with it. The most recent? LOOPS!
 

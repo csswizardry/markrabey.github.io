@@ -2,6 +2,7 @@
 layout: post
 title: Should designers and developers work for free?
 date: 2014-05-29 10:08:45.000000000 -04:00
+tags: freelance, management, web design, web development, redesign
 ---
 I'm a web developer, and my wife is a graphic designer. Over the years I have seen a very disturbing trend. We are often asked to do work for **free**.
 

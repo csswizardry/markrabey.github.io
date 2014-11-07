@@ -2,6 +2,7 @@
 layout: post
 title: LESS Mixins
 date: 2014-04-13 15:08:25.000000000 -04:00
+tags: less, css, transitions
 ---
 In writing the post about my [off canvas menu](/blog/2014/04/13/off-canvas-navigation/), I quickly realized that I had more lines in my LESS file than needed. In 3 different class definitions, I was using the same code for transitions:
 

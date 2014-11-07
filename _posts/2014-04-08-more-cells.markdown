@@ -2,6 +2,7 @@
 layout: post
 title: More Cells!
 date: 2014-04-08 05:54:48.000000000 -04:00
+tags: css, grid, layout, less
 ---
 Yesterday I [posted](/blog/2014/04/07/a-simple-css-grid/) the first part of my CSS Grid. Taking a look at it this morning, I've decided I need to refactor it a little to allow for a few more classes. Other grids often use the class names `.row` and/or `.col-*`. As it is now, I am using `.container` and `.cell-*`. I'm going to keep `.container`, but I'm rethinking `.cell-*` a little. I was using it simply to describe how much of the whole each cell spanned. Essentially the `*` was the number of total cells in a `.container` and that should always equal 12. The problem I quickly ran into, was wanting to create a layout that was 2 columns. One column at 1/3 width, and the other at 2/3. A pretty common layout these days.
 

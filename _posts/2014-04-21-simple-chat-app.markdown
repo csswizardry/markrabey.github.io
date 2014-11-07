@@ -2,6 +2,7 @@
 layout: post
 title: Simple Chat App
 date: 2014-04-21 09:48:24.000000000 -04:00
+tags: javascript, socket.io, node.js
 ---
 [Node.js](http://nodejs.orm"target="_blank) is great for building fast, highly scalable, web applications. Making use of [Websockets](http://en.wikipedia.org/wiki/WebSocket"taret="_blank), we are able to leverage this speed an flexibility, and deliver data to a huge number of clients simultaneously. Of course, I haven't built much of anything with Node, just a *very* simple invoicing app to run on my local machine. I decided to build a simple chat app learn about working with Node and Websockets via [Socket.io](http://socket.io"target="_blank).
 

@@ -2,6 +2,7 @@
 layout: post
 title: The Development Environment
 date: 2014-04-17 14:48:34.000000000 -04:00
+tags: development, environment, coding, grunt, git
 ---
 In several posts, I've started by talking about setting up my development environment. This is getting both dry, and repetitive. I use pretty much the same environment for everything lately, and I suspect if someone is reading about design, or CSS or something, they probably don't care about the specifics of my package.json file. I decided to write one post about how I get setup for a project.
 

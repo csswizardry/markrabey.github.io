@@ -2,6 +2,7 @@
 layout: post
 title: 10 Signs Your Website Needs Work
 date: 2014-04-17 16:36:19.000000000 -04:00
+tags: web design, web development, redesign, freelance, management
 ---
 Redesigning a website isn't just about changing the look and feel. We live in a world of ever-changing technologies, and this creates different problems that need to be solved. Redesigning a website can go much deeper than just the way the site looks. The functionality, presentation, load times, and ease of maintenance are all things that can prompt a redesign.
 
