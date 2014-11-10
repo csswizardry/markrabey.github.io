@@ -25,18 +25,24 @@
 			display: none;
 		}
 	}
+		@each $direction in $directions {
+			@each $breakpoint in $breakpoints {
 
-		.post__img--left {
-			float: left;
-		}
+                $alias:     nth($breakpoint, 1);
+                $condition: nth($breakpoint, 2);
+                @include media-query($alias) {
+					.post__img--#{$alias}-#{$direction} {
+						float: #{$direction};
+					}
+                }
+			} // breakpoints
+			
+			.post__img--#{$direction} {
+				float: #{$direction};
+			}
+		} //directions
 
-		.post__img--right {
-			float: right;
-		}
-
-		.post__img--center {
-			text-align: center;
-		}
+		
 
 //     .post__image {
 //         // margin: 0 auto $spacing-unit;

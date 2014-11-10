@@ -30,6 +30,12 @@ $breakpoints: (
     "retina"        "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
 ) !default;
 
+$directions: (
+    "left",
+    "right",
+    "center"
+) !default;
+
 $menu-items: (
     "about",
     "services",

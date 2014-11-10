@@ -8,19 +8,28 @@ layout: default
         <div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
             <section class="post" data-ui-component="Main content">
 
-                <img src="/assets/images/portfolio/{{ page.image_name }}" alt="Legend Computing" class="post__img  post__img--left">
+                <img src="/assets/images/portfolio/{{ page.image_name }}" alt="Legend Computing" class="post__img  post__img--lap-and-up-{% if page.image_direction %}{{ page.image_direction}}{% else %}left{% endif %}">
                 {{ content }}
             </section>
         </div
 
         ><div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-one-third">
 
-            {% if page.site_url %}
-                <div class="[ box  box--highlight ]  mb">
-                    <h3 class="heading">Visit {{ page.title }}</h3>
-                    <a href="{{ page.site_url }}" target="_blank">{{ page.site_url }} <i class="fa fa-external-link"></i></a>
-                </div>
-            {% endif %}
+            <div class="[ box  box--highlight ]  mb">
+                <h3 class="heading">Details</h3>
+                <ul class="list-ui">
+                    <li class="list__item">
+                        <strong>Company:</strong> {{ page.company }}
+                    </li>
+                    <li class="list__item">
+                        <strong>Built With:</strong> {{ page.built_with }}
+                    </li>
+                    <li class="list__item">
+                        <strong>URL:</strong> <a href="{{ page.site_url }}" target="_blank">{{ page.site_url }} <i class="fa fa-external-link"></i></a>
+                    </li>
+                </ul>
+                
+            </div>
             
             <div class="text-center">
                 <!-- Blog Post Skyscraper -->
