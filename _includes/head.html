@@ -18,7 +18,7 @@
     {% endif %}
 
 
-    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <title>{% if page.title %}{{ page.title }}{% if page.collection == 'portfolio' %} | Portfolio {% endif %} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">

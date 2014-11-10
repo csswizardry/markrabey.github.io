@@ -37,6 +37,13 @@ defaults:
             type: "demos"
         values:
             layout: "demo"
+    -
+        scope:
+            path: "portfolio"
+            type: "portfolio"
+        values:
+            layout: "portfolio"
+            page-class: "page--portfolio"
 
 include:
   - .nojekyll

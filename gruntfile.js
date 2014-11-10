@@ -26,6 +26,8 @@ module.exports = function(grunt) {
 			        "assets/css/**/*",
 			        "assets/css/js/**/*",
 			        "_posts/*.markdown",
+			        "_portfolio/*.markdown",
+			        "_portfolio/*.md",
 			        "_config.yml",
 			        "*.html",
 			        "*.md",

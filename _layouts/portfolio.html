@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% include nav.html %}
+{% include header.html %}
+<div class="wrapper">
+    <div class="grid  grid--large">
+        <div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
+            <section class="post" data-ui-component="Main content">
+
+                <img src="/assets/images/portfolio/{{ page.image_name }}" alt="Legend Computing" class="post__img  post__img--left">
+                {{ content }}
+            </section>
+        </div
+
+        ><div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-one-third">
+
+            {% if page.site_url %}
+                <div class="[ box  box--highlight ]  mb">
+                    <h3 class="heading">Visit {{ page.title }}</h3>
+                    <a href="{{ page.site_url }}" target="_blank">{{ page.site_url }} <i class="fa fa-external-link"></i></a>
+                </div>
+            {% endif %}
+            
+            <div class="text-center">
+                <!-- Blog Post Skyscraper -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:300px;height:600px"
+                     data-ad-client="ca-pub-1949517550744410"
+                     data-ad-slot="3035177684"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{% include footer.html %}
