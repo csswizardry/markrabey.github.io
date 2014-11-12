@@ -13,7 +13,7 @@
     
     
      
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="node.js,javascript,tutorial,socket.io" />
     
 
 
@@ -154,32 +154,35 @@
 
 <p>First, we include the necessary packages, and create an instance of an HTTP server:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
-  <span class="p">,</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">jade</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jade&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span></code></pre></div>
+<pre><code>var express = require('express')
+, app = express()
+, http = require('http')
+, server = http.createServer(app)
+, jade = require('jade')
+, io = require('socket.io').listen(server);
+</code></pre>
 
 <p>Next, we add some simple configuration for Jade. This essentially just tells Express where to find the templates, as well as creates a <code>public</code> folder for storing client-side CSS and JavaScript files.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/views&#39;</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;jade&#39;</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/public&#39;</span><span class="p">));</span></code></pre></div>
+<pre><code>app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
+</code></pre>
 
 <p>Now, we need to create the folders <code>views</code> and <code>public</code>. Then, we’ll tell Express to serve 3 views for us: <code>index.jade</code>,<code>about.jade</code> &amp; <code>stats.jade</code>. The first 2 will be the pages that send data to the server, the 3<sup>rd</sup> will only listen to the server, and display data. We also tell the server to start listening on port 3000. You can choose another port if you prefer.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index.jade&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;about.jade&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/stats&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;stats.jade&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+<pre><code>app.get('/', function(req, res){
+  res.render('index.jade');
+});
+app.get('/about', function(req, res){
+  res.render('about.jade');
+});
+app.get('/stats', function(req, res){
+  res.render('stats.jade');
+});
 
-<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span></code></pre></div>
+server.listen(3000);
+</code></pre>
 
 <hr />
 
@@ -188,33 +191,35 @@
 
 <p>First, inside the <code>views</code> folder, create <code>index.jade</code> and add some basic code:</p>
 
-<div class="highlight"><pre><code class="language-jade" data-lang="jade"><span class="nt">doctype</span> html
-<span class="nt">html</span>
-	<span class="nt">head</span>
-		<span class="nt">title</span> Index | Sample Real-Time Analytics
-        <span class="nt">script</span>(<span class="na">src=</span><span class="s">&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;/socket.io/socket.io.js&quot;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;user-script.js&quot;</span>)
-	<span class="nt">body</span>
-		<span class="nt">header</span>
-			<span class="nt">h1</span> Index
-		<span class="nt">section</span>
-			<span class="nt">p</span> This is the index page. Take a look at the &lt;a href=&quot;/about&quot;&gt;about&lt;/a&gt; page.</code></pre></div>
+<pre><code>doctype html
+html
+    head
+        title Index | Sample Real-Time Analytics
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+        script(src="/socket.io/socket.io.js")
+        script(src="user-script.js")
+    body
+        header
+            h1 Index
+        section
+            p This is the index page. Take a look at the &lt;a href="/about"&gt;about&lt;/a&gt; page.
+</code></pre>
 
 <p>Then create the nearly identical <code>about.jade</code>:</p>
 
-<div class="highlight"><pre><code class="language-jade" data-lang="jade"><span class="nt">doctype</span> html
-<span class="nt">html</span>
-	<span class="nt">head</span>
-		<span class="nt">title</span> About | Sample Real-Time Analytics
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;/socket.io/socket.io.js&quot;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;user-script.js&quot;</span>)
-	<span class="nt">body</span>
-		<span class="nt">header</span>
-			<span class="nt">h1</span> About
-		<span class="nt">section</span>
-			<span class="nt">p</span> This is the about page. Take a look at the &lt;a href=&quot;/&quot;&gt;index&lt;/a&gt; page.</code></pre></div>
+<pre><code>doctype html
+html
+    head
+        title About | Sample Real-Time Analytics
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+        script(src="/socket.io/socket.io.js")
+        script(src="user-script.js")
+    body
+        header
+            h1 About
+        section
+            p This is the about page. Take a look at the &lt;a href="/"&gt;index&lt;/a&gt; page.
+</code></pre>
 
 <p>Those are the 2 pages that ideally would have a common layout, but for the purposes of this post, that’s not needed. What is important to note, is regarding the 2 JavaScript files included. First, we have <code>/socket.io/socket.io.js</code> - this file you won’t actually see in your public folder at all. The Socket.io package we included will serve this file for us. The second file, <code>user-script.js</code> we will need to create inside our <code>public</code> folder. I named it this with the idea that <code>index.jade</code> and <code>about.jade</code> are pages a ‘user’ would hit. Before creating <code>stats.jade</code>, we’ll add the code needed to listen to the ‘user’ pages.</p>
 
@@ -223,12 +228,13 @@
 <h2 id="configuring-socketio">Configuring Socket.io</h2>
 <p>We already included the Socket.io package in our project, now we have to configure it. First, we’ll have the server listen for connections. Above <code>server.listen(3000)</code>, add:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received message: &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-      <span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;pageview&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s1">&#39;url&#39;</span><span class="o">:</span> <span class="nx">message</span> <span class="p">});</span>
-  <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<pre><code>io.sockets.on('connection', function(socket) {
+  socket.on('message', function (message) {
+      console.log('Received message: ' + message);
+      io.sockets.emit('pageview', { 'url': message });
+  });
+});
+</code></pre>
 
 <p>This does a couple things. First, <code>io.sockets.on('connection', function(socket)...</code> is fired every time a client connects to the server. A socket is created for communicating with the client. All other events need to happen within this one. Next, we added <code>socket.on('message', ...</code>. This has the socket listening for an event triggered by a client called <code>message</code>. When that event is fired (a message is received) the code inside is executed. In this case, we will log the message to our console, then emit an event for our stats page to listen to.</p>
 
@@ -239,10 +245,11 @@
 
 <p>As you hit the pages, you’ll see some additional output that simply says that <code>/socket.io/socket.io.js</code> has been served. At this point, we won’t see our page views logged in the console. We told the server to listen for an event called <code>message</code>, but haven’t told our pages to send that yet. To do that, create and open a file in the <code>public</code> folder called <code>user-script.js</code>, and add this code:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
-<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">);</span>
-<span class="p">});</span></code></pre></div>
+<pre><code>var socket = io.connect();
+socket.on('connect', function() {
+  socket.send(window.location);
+});
+</code></pre>
 
 <p>That’s all! First, we get our socket with <code>io.connect()</code>. As soon as this is created, the <code>connect</code> event is triggered, inside of which we call <code>socket.send()</code> and pass our URL to the server. Anything passed to the server with the <code>.send()</code> function is received by the server as a <code>message</code> event.</p>
 
@@ -253,85 +260,92 @@
 
 <p>Now it’s time to create <code>stats.jade</code> so we can see what’s coming in. This needs a little more than our other 2 pages, only because we need some elements to target with JavaScript for adding data.</p>
 
-<div class="highlight"><pre><code class="language-jade" data-lang="jade"><span class="nt">doctype</span> html
-<span class="nt">html</span>
-	<span class="nt">head</span>
-		<span class="nt">title</span> Stats | Sample Real-Time Analytics
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;/socket.io/socket.io.js&quot;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;stat-script.js&quot;</span>)
-	<span class="nt">body</span>
-		<span class="nt">header</span>
-			<span class="nt">h1</span> Stats
-		<span class="nt">section</span>
-			<span class="nt">ul</span><span class="nf">#pageviews</span></code></pre></div>
+<pre><code>doctype html
+html
+    head
+        title Stats | Sample Real-Time Analytics
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+        script(src="/socket.io/socket.io.js")
+        script(src="stat-script.js")
+    body
+        header
+            h1 Stats
+        section
+            ul#pageviews
+</code></pre>
 
 <p>Then, create and open <code>public/stat-script.js</code> and add this code:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
-<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;pageview&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#pageviews&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">);</span>
-<span class="p">});</span></code></pre></div>
+<pre><code>var socket = io.connect();
+socket.on('pageview', function(message) {
+  $('#pageviews').append('&lt;li&gt;' + message.url + '&lt;/li&gt;');
+});
+</code></pre>
 
 <p>Again, we connect to our server with <code>io.connect()</code>, but this time, we’re only targeting the <code>pageview</code> event. This is the event we told our server to emit after receiving a message from the client. All we’re doing is capturing the data from the event, and appending the URL to a list. I know it’s not pretty, but still neat. Now, open two browser windows. The first pointed to <code>http://localhost:3000/stats</code>, and the second <code>http://localhost:3000</code>, you can see this in action. Click on the ‘about’, click back to ‘index’, you’ll see these adding to the list as you click, without the stats page reloading.</p>
 
 <p>We can easily pass along, and display other data as well. Such as IP address, the time of the connection, and the total number of connections. This is all data that can be easily retrieved from the socket objects. In <code>server.js</code> we’re going to modify <code>io.sockets.emit()</code> to look like this:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received message: &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-      <span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;pageview&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="s1">&#39;connections&#39;</span><span class="o">:</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">connected</span><span class="p">).</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;url&#39;</span><span class="o">:</span> <span class="nx">message</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
-        <span class="s1">&#39;ip&#39;</span><span class="o">:</span><span class="nx">socket</span><span class="p">.</span><span class="nx">handshake</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span>
-        <span class="s1">&#39;time&#39;</span><span class="o">:</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
-      <span class="p">});</span>
-  <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<pre><code>io.sockets.on('connection', function(socket) {
+  socket.on('message', function (message) {
+      console.log('Received message: ' + message);
+      io.sockets.emit('pageview', {
+        'connections':Object.keys(io.connected).length-1,
+        'url': message.url,
+        'ip':socket.handshake.address.address,
+        'time':new Date()
+      });
+  });
+});
+</code></pre>
 
 <p>For the number of connections, we subtract one, as our <code>stats</code> window is actually counted in that. Now that we’re passing more data, we need elements on <code>stats.jade</code> to display these in. The IP and time-stamp we can add to our existing list item, but the connection count needs an element to display in. Update <code>stats.jade</code> to look like this:</p>
 
-<div class="highlight"><pre><code class="language-jade" data-lang="jade"><span class="nt">doctype</span> html
-<span class="nt">html</span>
-	<span class="nt">head</span>
-		<span class="nt">title</span> Stats | Sample Real-Time Analytics
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;/socket.io/socket.io.js&quot;</span>)
-		<span class="nt">script</span>(<span class="na">src=</span><span class="s">&quot;stat-script.js&quot;</span>)
-	<span class="nt">body</span>
-		<span class="nt">header</span>
-			<span class="nt">h1</span> Stats
-		<span class="nt">section</span>
-			<span class="nt">ul</span><span class="nf">#pageviews</span>
-		<span class="nt">section</span>
-			<span class="nt">h2</span> Connections
-			<span class="nf">#connections</span></code></pre></div>
+<pre><code>doctype html
+html
+    head
+        title Stats | Sample Real-Time Analytics
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+        script(src="/socket.io/socket.io.js")
+        script(src="stat-script.js")
+    body
+        header
+            h1 Stats
+        section
+            ul#pageviews
+        section
+            h2 Connections
+            #connections
+</code></pre>
 
 <p>Then, change <code>stat-script.js</code> to display the additional data:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
-<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;pageview&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#pageviews&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&lt;strong&gt;URL:&lt;/strong&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span>
-  <span class="s1">&#39;, &lt;strong&gt;IP:&lt;/strong&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">ip</span> <span class="o">+</span>
-  <span class="s1">&#39;, &lt;strong&gt;Time:&lt;/strong&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">time</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">);</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#connections&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">connections</span><span class="p">);</span>
-<span class="p">});</span></code></pre></div>
+<pre><code>var socket = io.connect();
+socket.on('pageview', function(message) {
+  $('#pageviews').append('&lt;li&gt;&lt;strong&gt;URL:&lt;/strong&gt; ' + message.url +
+  ', &lt;strong&gt;IP:&lt;/strong&gt; ' + message.ip +
+  ', &lt;strong&gt;Time:&lt;/strong&gt; ' + message.time + '&lt;/li&gt;');
+  $('#connections').text(message.connections);
+});
+</code></pre>
 
 <p>This is still a very crude example. Ideally the page views would be in a table, or something nicer than what I’ve done, but you get the idea. One thing I really <em>do</em> want to add at this point is a display of the current connections when the stats page is loaded. As it is right now, I have to wait for a hit to a page in order to be sent this data. Honestly, the easiest way I can think of to do this is simply emit the <code>pageview</code> event on connect. The only thing listen to it is the stats page, so why not? Inside of <code>io.sockets.on('connection'...)</code> add:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;pageview&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;connections&#39;</span><span class="o">:</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">connected</span><span class="p">).</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">});</span></code></pre></div>
+<pre><code>io.sockets.emit('pageview', {'connections':Object.keys(io.connected).length - 1});
+</code></pre>
 
 <p>If you restart your server and hit your stat page again, you’ll see the connections right away. But you’ll also see a bunch of <code>undefined</code> values in our page view list. So we need to update <code>stat-script.js</code> a little:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
-<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;pageview&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#pageviews&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&lt;strong&gt;URL:&lt;/strong&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span>
-    <span class="s1">&#39;, &lt;strong&gt;IP:&lt;/strong&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">ip</span> <span class="o">+</span>
-    <span class="s1">&#39;, &lt;strong&gt;Time:&lt;/strong&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">time</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#connections&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">connections</span><span class="p">);</span>
-<span class="p">});</span></code></pre></div>
+<pre><code>var socket = io.connect();
+socket.on('pageview', function(message) {
+  if (message.url) {
+    $('#pageviews').append('&lt;li&gt;&lt;strong&gt;URL:&lt;/strong&gt; ' + message.url +
+    ', &lt;strong&gt;IP:&lt;/strong&gt; ' + message.ip +
+    ', &lt;strong&gt;Time:&lt;/strong&gt; ' + message.time + '&lt;/li&gt;');
+  }
+  $('#connections').text(message.connections);
+});
+</code></pre>
 
 <p>This just checks that a URL was passed in <code>message</code>. If not then it won’t try to update the list of page views.</p>
 
@@ -362,6 +376,21 @@
             <div class="[ box  box--highlight ]  mb">
                 <h3 class="heading">Related Posts</h3>
                 <ul class="list-ui  post__list">
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-06-10">Tuesday, June 10, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/06/10/quote-tweets-with-a-node-js-twitter-bot">Quote Tweets with a Node.js Twitter Bot</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-05-09">Friday, May 09, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/05/09/build-a-twitter-bot-with-node-js">Build a Twitter Bot With Node.js</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-09-09">Tuesday, September 09, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/09/09/keeping-up-to-date">Keeping Up To Date</a></h3>
+                        </li>
                     
                 </ul>
             </div>

@@ -5,8 +5,8 @@
     <description>I try to make the web a better place by writing the best possible code I can, I trying to share my knowledge with others.</description>
     <link>http://markrabey.com/</link>
     <atom:link href="http://markrabey.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 10 Nov 2014 14:55:02 -0500</pubDate>
-    <lastBuildDate>Mon, 10 Nov 2014 14:55:02 -0500</lastBuildDate>
+    <pubDate>Wed, 12 Nov 2014 09:50:14 -0500</pubDate>
+    <lastBuildDate>Wed, 12 Nov 2014 09:50:14 -0500</lastBuildDate>
     <generator>Jekyll v2.3.0</generator>
     
       <item>
@@ -1490,32 +1490,35 @@ Toward the bottom of this page, you should have a button that says ‘Generate A
 
 &lt;p&gt;First, we include the necessary packages, and create an instance of an HTTP server:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jade&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;socket.io&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;var express = require(&#39;express&#39;)
+, app = express()
+, http = require(&#39;http&#39;)
+, server = http.createServer(app)
+, jade = require(&#39;jade&#39;)
+, io = require(&#39;socket.io&#39;).listen(server);
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Next, we add some simple configuration for Jade. This essentially just tells Express where to find the templates, as well as creates a &lt;code&gt;public&lt;/code&gt; folder for storing client-side CSS and JavaScript files.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;views&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;__dirname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/views&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;view engine&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;jade&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;__dirname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/public&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;app.set(&#39;views&#39;, __dirname + &#39;/views&#39;);
+app.set(&#39;view engine&#39;, &#39;jade&#39;);
+app.use(express.static(__dirname + &#39;/public&#39;));
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now, we need to create the folders &lt;code&gt;views&lt;/code&gt; and &lt;code&gt;public&lt;/code&gt;. Then, we’ll tell Express to serve 3 views for us: &lt;code&gt;index.jade&lt;/code&gt;,&lt;code&gt;about.jade&lt;/code&gt; &amp;amp; &lt;code&gt;stats.jade&lt;/code&gt;. The first 2 will be the pages that send data to the server, the 3&lt;sup&gt;rd&lt;/sup&gt; will only listen to the server, and display data. We also tell the server to start listening on port 3000. You can choose another port if you prefer.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;index.jade&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/about&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;about.jade&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/stats&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;stats.jade&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;app.get(&#39;/&#39;, function(req, res){
+  res.render(&#39;index.jade&#39;);
+});
+app.get(&#39;/about&#39;, function(req, res){
+  res.render(&#39;about.jade&#39;);
+});
+app.get(&#39;/stats&#39;, function(req, res){
+  res.render(&#39;stats.jade&#39;);
+});
 
-&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+server.listen(3000);
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;hr /&gt;
 
@@ -1524,33 +1527,35 @@ Toward the bottom of this page, you should have a button that says ‘Generate A
 
 &lt;p&gt;First, inside the &lt;code&gt;views&lt;/code&gt; folder, create &lt;code&gt;index.jade&lt;/code&gt; and add some basic code:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-jade&quot; data-lang=&quot;jade&quot;&gt;&lt;span class=&quot;nt&quot;&gt;doctype&lt;/span&gt; html
-&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;title&lt;/span&gt; Index | Sample Real-Time Analytics
-        &lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&amp;#39;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/socket.io/socket.io.js&amp;quot;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;user-script.js&amp;quot;&lt;/span&gt;)
-	&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;header&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt; Index
-		&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt; This is the index page. Take a look at the &amp;lt;a href=&amp;quot;/about&amp;quot;&amp;gt;about&amp;lt;/a&amp;gt; page.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;doctype html
+html
+    head
+        title Index | Sample Real-Time Analytics
+        script(src=&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;)
+        script(src=&quot;/socket.io/socket.io.js&quot;)
+        script(src=&quot;user-script.js&quot;)
+    body
+        header
+            h1 Index
+        section
+            p This is the index page. Take a look at the &amp;lt;a href=&quot;/about&quot;&amp;gt;about&amp;lt;/a&amp;gt; page.
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then create the nearly identical &lt;code&gt;about.jade&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-jade&quot; data-lang=&quot;jade&quot;&gt;&lt;span class=&quot;nt&quot;&gt;doctype&lt;/span&gt; html
-&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;title&lt;/span&gt; About | Sample Real-Time Analytics
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&amp;#39;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/socket.io/socket.io.js&amp;quot;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;user-script.js&amp;quot;&lt;/span&gt;)
-	&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;header&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt; About
-		&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt; This is the about page. Take a look at the &amp;lt;a href=&amp;quot;/&amp;quot;&amp;gt;index&amp;lt;/a&amp;gt; page.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;doctype html
+html
+    head
+        title About | Sample Real-Time Analytics
+        script(src=&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;)
+        script(src=&quot;/socket.io/socket.io.js&quot;)
+        script(src=&quot;user-script.js&quot;)
+    body
+        header
+            h1 About
+        section
+            p This is the about page. Take a look at the &amp;lt;a href=&quot;/&quot;&amp;gt;index&amp;lt;/a&amp;gt; page.
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Those are the 2 pages that ideally would have a common layout, but for the purposes of this post, that’s not needed. What is important to note, is regarding the 2 JavaScript files included. First, we have &lt;code&gt;/socket.io/socket.io.js&lt;/code&gt; - this file you won’t actually see in your public folder at all. The Socket.io package we included will serve this file for us. The second file, &lt;code&gt;user-script.js&lt;/code&gt; we will need to create inside our &lt;code&gt;public&lt;/code&gt; folder. I named it this with the idea that &lt;code&gt;index.jade&lt;/code&gt; and &lt;code&gt;about.jade&lt;/code&gt; are pages a ‘user’ would hit. Before creating &lt;code&gt;stats.jade&lt;/code&gt;, we’ll add the code needed to listen to the ‘user’ pages.&lt;/p&gt;
 
@@ -1559,12 +1564,13 @@ Toward the bottom of this page, you should have a button that says ‘Generate A
 &lt;h2 id=&quot;configuring-socketio&quot;&gt;Configuring Socket.io&lt;/h2&gt;
 &lt;p&gt;We already included the Socket.io package in our project, now we have to configure it. First, we’ll have the server listen for connections. Above &lt;code&gt;server.listen(3000)&lt;/code&gt;, add:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;connection&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Received message: &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pageview&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;io.sockets.on(&#39;connection&#39;, function(socket) {
+  socket.on(&#39;message&#39;, function (message) {
+      console.log(&#39;Received message: &#39; + message);
+      io.sockets.emit(&#39;pageview&#39;, { &#39;url&#39;: message });
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This does a couple things. First, &lt;code&gt;io.sockets.on(&#39;connection&#39;, function(socket)...&lt;/code&gt; is fired every time a client connects to the server. A socket is created for communicating with the client. All other events need to happen within this one. Next, we added &lt;code&gt;socket.on(&#39;message&#39;, ...&lt;/code&gt;. This has the socket listening for an event triggered by a client called &lt;code&gt;message&lt;/code&gt;. When that event is fired (a message is received) the code inside is executed. In this case, we will log the message to our console, then emit an event for our stats page to listen to.&lt;/p&gt;
 
@@ -1575,10 +1581,11 @@ Toward the bottom of this page, you should have a button that says ‘Generate A
 
 &lt;p&gt;As you hit the pages, you’ll see some additional output that simply says that &lt;code&gt;/socket.io/socket.io.js&lt;/code&gt; has been served. At this point, we won’t see our page views logged in the console. We told the server to listen for an event called &lt;code&gt;message&lt;/code&gt;, but haven’t told our pages to send that yet. To do that, create and open a file in the &lt;code&gt;public&lt;/code&gt; folder called &lt;code&gt;user-script.js&lt;/code&gt;, and add this code:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;connect&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;var socket = io.connect();
+socket.on(&#39;connect&#39;, function() {
+  socket.send(window.location);
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That’s all! First, we get our socket with &lt;code&gt;io.connect()&lt;/code&gt;. As soon as this is created, the &lt;code&gt;connect&lt;/code&gt; event is triggered, inside of which we call &lt;code&gt;socket.send()&lt;/code&gt; and pass our URL to the server. Anything passed to the server with the &lt;code&gt;.send()&lt;/code&gt; function is received by the server as a &lt;code&gt;message&lt;/code&gt; event.&lt;/p&gt;
 
@@ -1589,85 +1596,92 @@ Toward the bottom of this page, you should have a button that says ‘Generate A
 
 &lt;p&gt;Now it’s time to create &lt;code&gt;stats.jade&lt;/code&gt; so we can see what’s coming in. This needs a little more than our other 2 pages, only because we need some elements to target with JavaScript for adding data.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-jade&quot; data-lang=&quot;jade&quot;&gt;&lt;span class=&quot;nt&quot;&gt;doctype&lt;/span&gt; html
-&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;title&lt;/span&gt; Stats | Sample Real-Time Analytics
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&amp;#39;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/socket.io/socket.io.js&amp;quot;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stat-script.js&amp;quot;&lt;/span&gt;)
-	&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;header&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt; Stats
-		&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;#pageviews&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;doctype html
+html
+    head
+        title Stats | Sample Real-Time Analytics
+        script(src=&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;)
+        script(src=&quot;/socket.io/socket.io.js&quot;)
+        script(src=&quot;stat-script.js&quot;)
+    body
+        header
+            h1 Stats
+        section
+            ul#pageviews
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then, create and open &lt;code&gt;public/stat-script.js&lt;/code&gt; and add this code:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pageview&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#pageviews&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;li&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;/li&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;var socket = io.connect();
+socket.on(&#39;pageview&#39;, function(message) {
+  $(&#39;#pageviews&#39;).append(&#39;&amp;lt;li&amp;gt;&#39; + message.url + &#39;&amp;lt;/li&amp;gt;&#39;);
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Again, we connect to our server with &lt;code&gt;io.connect()&lt;/code&gt;, but this time, we’re only targeting the &lt;code&gt;pageview&lt;/code&gt; event. This is the event we told our server to emit after receiving a message from the client. All we’re doing is capturing the data from the event, and appending the URL to a list. I know it’s not pretty, but still neat. Now, open two browser windows. The first pointed to &lt;code&gt;http://localhost:3000/stats&lt;/code&gt;, and the second &lt;code&gt;http://localhost:3000&lt;/code&gt;, you can see this in action. Click on the ‘about’, click back to ‘index’, you’ll see these adding to the list as you click, without the stats page reloading.&lt;/p&gt;
 
 &lt;p&gt;We can easily pass along, and display other data as well. Such as IP address, the time of the connection, and the total number of connections. This is all data that can be easily retrieved from the socket objects. In &lt;code&gt;server.js&lt;/code&gt; we’re going to modify &lt;code&gt;io.sockets.emit()&lt;/code&gt; to look like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;connection&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Received message: &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pageview&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s1&quot;&gt;&amp;#39;connections&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s1&quot;&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s1&quot;&gt;&amp;#39;ip&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handshake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s1&quot;&gt;&amp;#39;time&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;io.sockets.on(&#39;connection&#39;, function(socket) {
+  socket.on(&#39;message&#39;, function (message) {
+      console.log(&#39;Received message: &#39; + message);
+      io.sockets.emit(&#39;pageview&#39;, {
+        &#39;connections&#39;:Object.keys(io.connected).length-1,
+        &#39;url&#39;: message.url,
+        &#39;ip&#39;:socket.handshake.address.address,
+        &#39;time&#39;:new Date()
+      });
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;For the number of connections, we subtract one, as our &lt;code&gt;stats&lt;/code&gt; window is actually counted in that. Now that we’re passing more data, we need elements on &lt;code&gt;stats.jade&lt;/code&gt; to display these in. The IP and time-stamp we can add to our existing list item, but the connection count needs an element to display in. Update &lt;code&gt;stats.jade&lt;/code&gt; to look like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-jade&quot; data-lang=&quot;jade&quot;&gt;&lt;span class=&quot;nt&quot;&gt;doctype&lt;/span&gt; html
-&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;title&lt;/span&gt; Stats | Sample Real-Time Analytics
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&amp;#39;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/socket.io/socket.io.js&amp;quot;&lt;/span&gt;)
-		&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;(&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stat-script.js&amp;quot;&lt;/span&gt;)
-	&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;header&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt; Stats
-		&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;#pageviews&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt;
-			&lt;span class=&quot;nt&quot;&gt;h2&lt;/span&gt; Connections
-			&lt;span class=&quot;nf&quot;&gt;#connections&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;doctype html
+html
+    head
+        title Stats | Sample Real-Time Analytics
+        script(src=&#39;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&#39;)
+        script(src=&quot;/socket.io/socket.io.js&quot;)
+        script(src=&quot;stat-script.js&quot;)
+    body
+        header
+            h1 Stats
+        section
+            ul#pageviews
+        section
+            h2 Connections
+            #connections
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then, change &lt;code&gt;stat-script.js&lt;/code&gt; to display the additional data:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pageview&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#pageviews&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;URL:&amp;lt;/strong&amp;gt; &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-  &lt;span class=&quot;s1&quot;&gt;&amp;#39;, &amp;lt;strong&amp;gt;IP:&amp;lt;/strong&amp;gt; &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-  &lt;span class=&quot;s1&quot;&gt;&amp;#39;, &amp;lt;strong&amp;gt;Time:&amp;lt;/strong&amp;gt; &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;/li&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#connections&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;var socket = io.connect();
+socket.on(&#39;pageview&#39;, function(message) {
+  $(&#39;#pageviews&#39;).append(&#39;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;URL:&amp;lt;/strong&amp;gt; &#39; + message.url +
+  &#39;, &amp;lt;strong&amp;gt;IP:&amp;lt;/strong&amp;gt; &#39; + message.ip +
+  &#39;, &amp;lt;strong&amp;gt;Time:&amp;lt;/strong&amp;gt; &#39; + message.time + &#39;&amp;lt;/li&amp;gt;&#39;);
+  $(&#39;#connections&#39;).text(message.connections);
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is still a very crude example. Ideally the page views would be in a table, or something nicer than what I’ve done, but you get the idea. One thing I really &lt;em&gt;do&lt;/em&gt; want to add at this point is a display of the current connections when the stats page is loaded. As it is right now, I have to wait for a hit to a page in order to be sent this data. Honestly, the easiest way I can think of to do this is simply emit the &lt;code&gt;pageview&lt;/code&gt; event on connect. The only thing listen to it is the stats page, so why not? Inside of &lt;code&gt;io.sockets.on(&#39;connection&#39;...)&lt;/code&gt; add:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pageview&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;connections&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;io.sockets.emit(&#39;pageview&#39;, {&#39;connections&#39;:Object.keys(io.connected).length - 1});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If you restart your server and hit your stat page again, you’ll see the connections right away. But you’ll also see a bunch of &lt;code&gt;undefined&lt;/code&gt; values in our page view list. So we need to update &lt;code&gt;stat-script.js&lt;/code&gt; a little:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pageview&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#pageviews&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;URL:&amp;lt;/strong&amp;gt; &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&amp;#39;, &amp;lt;strong&amp;gt;IP:&amp;lt;/strong&amp;gt; &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&amp;#39;, &amp;lt;strong&amp;gt;Time:&amp;lt;/strong&amp;gt; &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;/li&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#connections&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;var socket = io.connect();
+socket.on(&#39;pageview&#39;, function(message) {
+  if (message.url) {
+    $(&#39;#pageviews&#39;).append(&#39;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;URL:&amp;lt;/strong&amp;gt; &#39; + message.url +
+    &#39;, &amp;lt;strong&amp;gt;IP:&amp;lt;/strong&amp;gt; &#39; + message.ip +
+    &#39;, &amp;lt;strong&amp;gt;Time:&amp;lt;/strong&amp;gt; &#39; + message.time + &#39;&amp;lt;/li&amp;gt;&#39;);
+  }
+  $(&#39;#connections&#39;).text(message.connections);
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This just checks that a URL was passed in &lt;code&gt;message&lt;/code&gt;. If not then it won’t try to update the list of page views.&lt;/p&gt;
 
@@ -1676,6 +1690,14 @@ Toward the bottom of this page, you should have a button that says ‘Generate A
         <pubDate>Mon, 05 May 2014 16:44:36 -0400</pubDate>
         <link>http://markrabey.com/blog/2014/05/05/real-time-analytics-with-node-js-socket-io</link>
         <guid isPermaLink="true">http://markrabey.com/blog/2014/05/05/real-time-analytics-with-node-js-socket-io</guid>
+        
+        <category>node.js,</category>
+        
+        <category>javascript,</category>
+        
+        <category>tutorial,</category>
+        
+        <category>socket.io</category>
         
         
       </item>
