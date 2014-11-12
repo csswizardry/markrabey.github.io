@@ -174,9 +174,11 @@ app.use(express.static(__dirname + '/public'));
 <pre><code>app.get('/', function(req, res){
   res.render('index.jade');
 });
+
 app.get('/about', function(req, res){
   res.render('about.jade');
 });
+
 app.get('/stats', function(req, res){
   res.render('stats.jade');
 });
