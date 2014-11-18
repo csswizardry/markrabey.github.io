@@ -2,6 +2,7 @@
 layout: post
 title: LESS Gradient Mixins
 date: 2014-04-23 09:47:17.000000000 -04:00
+tags: css, less, mixins
 ---
 I really like using [LESS](http://lesscss.org"target="_blank) to generate my CSS. I've been finding that it's especially helpful when it comes to things that need to be done fairly often. I hate putting in browser prefixes for things like border-radius, transition, drop-shadows, or any other number of things. So I began writing myself some mixins. As I mentioned in a few posts about transitions([first this one](/blog/2014/04/13/less-mixins/), [then this update](/blog/2014/04/14/a-little-update-to-transitions/), [then this final one](/blog/2014/04/14/css-transitions/)), [mixins](http://lesscss.org/features/#mixins-feature"target="_blank) are sort of like functions that you can call to generate CSS, they even allow you to pass in arguments.
 

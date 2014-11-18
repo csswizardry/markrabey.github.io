@@ -2,6 +2,7 @@
 layout: post
 title: Linear Gradients with CSS
 date: 2014-04-22 11:50:32.000000000 -04:00
+tags: css, less, mixins
 ---
 In older CSS specifications, we had to use images to achieve gradient effects, but now, with CSS3, we can create smooth, fast, and lightweight gradients that are rendered by the browser.
 

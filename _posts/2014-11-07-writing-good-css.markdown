@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Writing Good CSS
-tags: css, less, sass, bem, oocss
+tags: css, semantics, less, sass, bem, oocss
 ---
 
 I'm always trying to learn new things. However, more importantly, I also try to learn ways to *improve* the way I already do things. Both at my full-time gig and for client side-projects, the thing I've always wanted to improve was my CSS. I've always felt I'm pretty good when it comes to CSS, but I've always found it messy to read, and often hard to maintain. What I've been trying to do, is find out what makes good, readable, maintainable CSS. I think I've come up with (and found) some ways to make this all possible.
