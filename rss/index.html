@@ -5,9 +5,67 @@
     <description>I try to make the web a better place by writing the best possible code I can, I trying to share my knowledge with others.</description>
     <link>http://markrabey.com/</link>
     <atom:link href="http://markrabey.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 19 Nov 2014 20:01:54 -0500</pubDate>
-    <lastBuildDate>Wed, 19 Nov 2014 20:01:54 -0500</lastBuildDate>
+    <pubDate>Thu, 20 Nov 2014 10:23:30 -0500</pubDate>
+    <lastBuildDate>Thu, 20 Nov 2014 10:23:30 -0500</lastBuildDate>
     <generator>Jekyll v2.3.0</generator>
+    
+      <item>
+        <title>CSS Class Names</title>
+        <description>&lt;p&gt;I recently wrote about &lt;a href=&quot;/blog/2014/11/07/writing-good-css&quot;&gt;writing good CSS&lt;/a&gt;, and some of the concepts I’ve been using to approach CSS more effectively. Yesterday at work I came across a CSS class that just made me cringe, and I realized I didn’t really touch on this in the last post. I’m only going to touch on in briefly here, and sometime soon write a more fleshed out post on class names, and &lt;a href=&quot;/blog/2014/11/07/writing-good-css#bem&quot;&gt;BEM-&lt;em&gt;like&lt;/em&gt;&lt;/a&gt; naming conventions.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-good&quot;&gt;The Good&lt;/h2&gt;
+&lt;p&gt;While there will always be exceptions, good class names, in my opinion anyway, should describe what the content &lt;em&gt;is&lt;/em&gt; not what it looks like. Again, if using BEM naming conventions, you have &lt;strong&gt;M&lt;/strong&gt;odifiers that &lt;em&gt;are&lt;/em&gt; very specific, but in general, your class names should be fairly generic. For example, if I want to style a button with a standard class, I might call it &lt;code&gt;.button&lt;/code&gt; or &lt;code&gt;.btn&lt;/code&gt;. This class is very general. This class could do anything to this element. It could make it red or blue, or rounded borders, or green text. It doesn’t matter. This is a good thing. If at some point some manager somewhere say we need to make that text bold, we can go ahead and do that. No big deal. This is generally considered to be a &lt;em&gt;good&lt;/em&gt; thing.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-bad&quot;&gt;The Bad&lt;/h2&gt;
+&lt;p&gt;A “bad” class name is something that gives a specific style, but used carefully, these classes really aren’t &lt;em&gt;that&lt;/em&gt; bad. A class like &lt;code&gt;.text-center&lt;/code&gt; - is very specific, and maybe not &lt;em&gt;great&lt;/em&gt; but as long as it does exactly what the name suggests, and only that, it has some valuable use-cases. For example if you’re adding this to a &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tag to center that text, and that’s the only thing you’re doing with that particular tag, then that is great, and I have no issue with it. However, if you have say a &lt;code&gt;.header&lt;/code&gt; class applied to an &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;, and then you also apply &lt;code&gt;.text-center&lt;/code&gt; to that element, that would be bad. It would be more logical in this case to simply add a &lt;code&gt;text-align: center;&lt;/code&gt; to the &lt;code&gt;.header&lt;/code&gt; class. That specificity is simply not necessary.&lt;/p&gt;
+
+&lt;p&gt;I’ve found that using BEM really helps the readability of this type of class, although I still try to make them somewhat general in their name. Again, the class describes what the element &lt;em&gt;is&lt;/em&gt;. Here the example from my &lt;a href=&quot;/blog/2014/11/07/writing-good-css&quot;&gt;last post&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.btn {
+    display: inline-block;
+    padding: 1em 2em;
+    vertical-align: middle;
+    border: 1px solid #333;
+}
+
+.btn--positive {
+    background-color: green;
+    color: white;
+}
+
+.btn--negative {
+    background-color: red;
+    color: white;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;.btn&lt;/code&gt; class tells us the element &lt;em&gt;is&lt;/em&gt; a button. Then you could add either &lt;code&gt;.btn--positive&lt;/code&gt; or &lt;code&gt;.btn--negative&lt;/code&gt; to tell us that the button is either positive or negative. No where in the class names does it state that the button has a &lt;code&gt;border&lt;/code&gt; attributes, or that positive buttons are green and negative buttons are red. That doesn’t matter here. The class names describe what the element &lt;em&gt;is&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-ugly&quot;&gt;The Ugly&lt;/h2&gt;
+&lt;p&gt;There are some ugly class names out there. Yesterday at work, I came across the &lt;strong&gt;worst&lt;/strong&gt; one I’ve seen in a long time. OK, maybe that’s a &lt;em&gt;slight&lt;/em&gt; exaggeration, but it really made me cringe. I was looking at a page built for the company I work for. It was a fairly quick build, low traffic, nothing fancy. They decided to outsource this to a local designer. In my opinion, that was a mistake. Outsourcing &lt;em&gt;can&lt;/em&gt; be a great option, but only if the results are adequate. The code was horrible. All static HTML is fine, if you’re HTML is good at least. That was not the case. But I had never really looked at the CSS. Mostly out of fear. I could tell that whoever “wrote” this code, likely did so using Dreamweaver or possibly even Frontpage, so I just assumed it was garbage. But, after a couple years, someone decided they wanted to make some headings bigger on one of the pages. No big deal right. And it’s still not hard, but what I saw when looking at this was a class called…wait for it…&lt;code&gt;.redbold&lt;/code&gt;. OK - so this class, based on the name, should make this text red, and bold. That means it is telling me in the class name &lt;em&gt;exactly&lt;/em&gt; what this class is doing. No other classes were applied here, so it wasn’t overriding something specific, it was just there. Then, I looked at the CSS file and saw this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.redbold {
+	color: #D2232A;
+	font-weight: 400;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, the class name, as specific as it was, &lt;em&gt;lied&lt;/em&gt; to me. Setting &lt;code&gt;font-weight: 400;&lt;/code&gt; is the same as setting &lt;code&gt;font-weight: normal;&lt;/code&gt;. Yes, that’s right, &lt;strong&gt;&lt;em&gt;normal&lt;/em&gt;&lt;/strong&gt;. It’s quite likely that at some point these titles &lt;em&gt;were&lt;/em&gt; bold, and then someone decided they should be “normal”. So the CSS was changed. Obviously it would be a pain to update everywhere on the page that might have &lt;code&gt;.redbold&lt;/code&gt; applied, so that wasn’t done. That’s kind of the point of classes. So, what if they decided they now wanted the color to be blue? Would you have a class &lt;code&gt;.redbold&lt;/code&gt; that made text blue with a normal weight? The class could have easily been called &lt;code&gt;.heading&lt;/code&gt; or something to describe what the content &lt;em&gt;is&lt;/em&gt; and it wouldn’t be a problem.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RANT COMPLETE&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 20 Nov 2014 00:00:00 -0500</pubDate>
+        <link>http://markrabey.com/blog/2014/11/20/css-class-names</link>
+        <guid isPermaLink="true">http://markrabey.com/blog/2014/11/20/css-class-names</guid>
+        
+        <category>css,</category>
+        
+        <category>semantics,</category>
+        
+        <category>bem</category>
+        
+        
+      </item>
     
       <item>
         <title>Writing Good CSS</title>
@@ -151,6 +209,8 @@
         <guid isPermaLink="true">http://markrabey.com/blog/2014/11/07/writing-good-css</guid>
         
         <category>css,</category>
+        
+        <category>semantics,</category>
         
         <category>less,</category>
         
@@ -2111,6 +2171,12 @@ This is a short explaining title tags, hosted and produced by the Quality Assura
         <link>http://markrabey.com/blog/2014/04/23/less-gradient-mixins</link>
         <guid isPermaLink="true">http://markrabey.com/blog/2014/04/23/less-gradient-mixins</guid>
         
+        <category>css,</category>
+        
+        <category>less,</category>
+        
+        <category>mixins</category>
+        
         
       </item>
     
@@ -2278,6 +2344,12 @@ ___&lt;/p&gt;
         <pubDate>Tue, 22 Apr 2014 11:50:32 -0400</pubDate>
         <link>http://markrabey.com/blog/2014/04/22/linear-gradients-with-css</link>
         <guid isPermaLink="true">http://markrabey.com/blog/2014/04/22/linear-gradients-with-css</guid>
+        
+        <category>css,</category>
+        
+        <category>less,</category>
+        
+        <category>mixins</category>
         
         
       </item>

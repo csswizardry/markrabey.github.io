@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width" />
     
     
-        <meta name="description" content="I wanted to find a nice way to animate the scrolling on my site, so that when a user clicks ‘Blog’ they aren’t just jumped down the page. I didn’t..." />
+        <meta name="description" content="I recently wrote about writing good CSS, and some of the concepts I’ve been using to approach CSS more effectively. Yesterday at work I came across a CSS class that..." />
     
     
      
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="css,semantics,bem" />
     
 
 
-    <title>JavaScript Scrolling Animation | Mark Rabey</title>
+    <title>CSS Class Names | Mark Rabey</title>
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/assets/css/syntax-dark.css">
     <link rel="stylesheet" href="/assets/css/markrabey.min.css">
     
-    <link rel="canonical" href="http://markrabey.com/blog/2014/04/27/javascript-scrolling-animation">
+    <link rel="canonical" href="http://markrabey.com/blog/2014/11/20/css-class-names">
     
 
     <!-- Twitter Cards -->
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@MarkRabey">
     <meta name="twitter:domain" content="markrabey.com">
     <meta name="twitter:creator" content="@MarkRabey">
-    <meta name="twitter:title" content="JavaScript Scrolling Animation | Mark Rabey">
+    <meta name="twitter:title" content="CSS Class Names | Mark Rabey">
     <meta name="twitter:image:src" content="/logo.png">
     
-        <meta name="twitter:description" content="I wanted to find a nice way to animate the scrolling on my site, so that when a user clicks ‘Blog’ they aren’t just jumped down the page. I didn’t...">
+        <meta name="twitter:description" content="I recently wrote about writing good CSS, and some of the concepts I’ve been using to approach CSS more effectively. Yesterday at work I came across a CSS class that...">
     
     
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -122,9 +122,9 @@
 </nav>
 <header class="page-head">
     <div class="wrapper">
-        <h1 class="page-head__title">JavaScript Scrolling Animation</h1>
+        <h1 class="page-head__title">CSS Class Names</h1>
         
-	<time class="page-head__date" datetime="2014-04-27">Sunday, April 27, 2014</time>
+	<time class="page-head__date" datetime="2014-11-20">Thursday, November 20, 2014</time>
         	<hr>
         
     </div>
@@ -135,60 +135,48 @@
     <div class="grid  grid--large">
         <div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
             <section class="post" data-ui-component="Main content">
-                <p>I wanted to find a nice way to animate the scrolling on my site, so that when a user clicks ‘Blog’ they aren’t just jumped down the page. I didn’t want to resort to one of the many jQuery plugins, partly because I’m not using any jQuery on my site at all, and adding it just for this seems ridiculous. I could do something in pure JavaScript, but then I decided, it seems simple enough, surely it can be done purely in CSS, right? So I decided to try that first.</p>
+                <p>I recently wrote about <a href="/blog/2014/11/07/writing-good-css">writing good CSS</a>, and some of the concepts I’ve been using to approach CSS more effectively. Yesterday at work I came across a CSS class that just made me cringe, and I realized I didn’t really touch on this in the last post. I’m only going to touch on in briefly here, and sometime soon write a more fleshed out post on class names, and <a href="/blog/2014/11/07/writing-good-css#bem">BEM-<em>like</em></a> naming conventions.</p>
 
-<h2 id="target">:target</h2>
-<p>Any URL that has <code>#</code> followed by an anchor name, links to an element in the document that has that anchor name as its <code>id</code>. When clicked, the target element can be captured using the selector <code>:target</code>. Here is a simple example that makes use of this to change background colours on a div:</p>
+<h2 id="the-good">The Good</h2>
+<p>While there will always be exceptions, good class names, in my opinion anyway, should describe what the content <em>is</em> not what it looks like. Again, if using BEM naming conventions, you have <strong>M</strong>odifiers that <em>are</em> very specific, but in general, your class names should be fairly generic. For example, if I want to style a button with a standard class, I might call it <code>.button</code> or <code>.btn</code>. This class is very general. This class could do anything to this element. It could make it red or blue, or rounded borders, or green text. It doesn’t matter. This is a good thing. If at some point some manager somewhere say we need to make that text bold, we can go ahead and do that. No big deal. This is generally considered to be a <em>good</em> thing.</p>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/WideAsleepDad/Z3sDw/embedded/result,css,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<h2 id="the-bad">The Bad</h2>
+<p>A “bad” class name is something that gives a specific style, but used carefully, these classes really aren’t <em>that</em> bad. A class like <code>.text-center</code> - is very specific, and maybe not <em>great</em> but as long as it does exactly what the name suggests, and only that, it has some valuable use-cases. For example if you’re adding this to a <code>&lt;p&gt;</code> tag to center that text, and that’s the only thing you’re doing with that particular tag, then that is great, and I have no issue with it. However, if you have say a <code>.header</code> class applied to an <code>&lt;h1&gt;</code>, and then you also apply <code>.text-center</code> to that element, that would be bad. It would be more logical in this case to simply add a <code>text-align: center;</code> to the <code>.header</code> class. That specificity is simply not necessary.</p>
 
-<p>I thought support for this was going to be pretty poor, but it turns out all major browsers support it, and it’s supported in IE 9+. I figure if you’re using an older version of IE you’re used to having a sub-par Internet experience, so there’s no need to look for another option.</p>
+<p>I’ve found that using BEM really helps the readability of this type of class, although I still try to make them somewhat general in their name. Again, the class describes what the element <em>is</em>. Here the example from my <a href="/blog/2014/11/07/writing-good-css">last post</a>:</p>
 
-<h2 id="transistion-and-transform">transistion() and transform()</h2>
-<p>I was thinking my best option for animating this was using <code>transform()</code> to actually move the content, and <code>transition()</code> to make it nice and smooth. Here’s what I played with:</p>
+<pre><code>.btn {
+    display: inline-block;
+    padding: 1em 2em;
+    vertical-align: middle;
+    border: 1px solid #333;
+}
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/WideAsleepDad/xcC6s/embedded/result,css,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+.btn--positive {
+    background-color: green;
+    color: white;
+}
 
-<p>So, what I determined from some quick experiments, is that this won’t really work with pure CSS. It’s close, but there are too many issues. I don’t want to actually <em>move</em> my content, just scroll to is smoothly. So, still wanting to avoid jQuery, I moved onto a pure JavaScript experiment.</p>
+.btn--negative {
+    background-color: red;
+    color: white;
+}
+</code></pre>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/WideAsleepDad/84pjT/embedded/result,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<p>The <code>.btn</code> class tells us the element <em>is</em> a button. Then you could add either <code>.btn--positive</code> or <code>.btn--negative</code> to tell us that the button is either positive or negative. No where in the class names does it state that the button has a <code>border</code> attributes, or that positive buttons are green and negative buttons are red. That doesn’t matter here. The class names describe what the element <em>is</em>.</p>
 
-<p>The JavaScript ended up being pretty simple in the end. Basically, I have a function the you call my passing in a target point, and optionally a duration for the animation to occur. After setting all my values for offsets and deltas, I clear any timers that may also be running using the <code>clearInterval()</code> function.</p>
+<h2 id="the-ugly">The Ugly</h2>
+<p>There are some ugly class names out there. Yesterday at work, I came across the <strong>worst</strong> one I’ve seen in a long time. OK, maybe that’s a <em>slight</em> exaggeration, but it really made me cringe. I was looking at a page built for the company I work for. It was a fairly quick build, low traffic, nothing fancy. They decided to outsource this to a local designer. In my opinion, that was a mistake. Outsourcing <em>can</em> be a great option, but only if the results are adequate. The code was horrible. All static HTML is fine, if you’re HTML is good at least. That was not the case. But I had never really looked at the CSS. Mostly out of fear. I could tell that whoever “wrote” this code, likely did so using Dreamweaver or possibly even Frontpage, so I just assumed it was garbage. But, after a couple years, someone decided they wanted to make some headings bigger on one of the pages. No big deal right. And it’s still not hard, but what I saw when looking at this was a class called…wait for it…<code>.redbold</code>. OK - so this class, based on the name, should make this text red, and bold. That means it is telling me in the class name <em>exactly</em> what this class is doing. No other classes were applied here, so it wasn’t overriding something specific, it was just there. Then, I looked at the CSS file and saw this:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+<pre><code>.redbold {
+	color: #D2232A;
+	font-weight: 400;
+}
+</code></pre>
 
-<p>The next function is what actually scrolls the page.</p>
+<p>So, the class name, as specific as it was, <em>lied</em> to me. Setting <code>font-weight: 400;</code> is the same as setting <code>font-weight: normal;</code>. Yes, that’s right, <strong><em>normal</em></strong>. It’s quite likely that at some point these titles <em>were</em> bold, and then someone decided they should be “normal”. So the CSS was changed. Obviously it would be a pain to update everywhere on the page that might have <code>.redbold</code> applied, so that wasn’t done. That’s kind of the point of classes. So, what if they decided they now wanted the color to be blue? Would you have a class <code>.redbold</code> that made text blue with a normal weight? The class could have easily been called <code>.heading</code> or something to describe what the content <em>is</em> and it wouldn’t be a problem.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">step</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">y</span><span class="p">;</span>
-	<span class="nx">factor</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">start</span><span class="p">)</span> <span class="o">/</span> <span class="nx">duration</span><span class="p">;</span>
-	<span class="k">if</span><span class="p">(</span> <span class="nx">factor</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-        <span class="nx">factor</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="nx">y</span> <span class="o">=</span> <span class="nx">factor</span> <span class="o">*</span> <span class="nx">delta</span> <span class="o">+</span> <span class="nx">offset</span><span class="p">;</span>
-	<span class="nb">window</span><span class="p">.</span><span class="nx">scrollBy</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="nb">window</span><span class="p">.</span><span class="nx">pageYOffset</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
-
-<p>I used a variable called <code>factor</code> to calculate whether or the animation has run for the specified time, once it has, the timer is stopped.</p>
-
-<p>After the function was created, it was pretty easy to call it on click, by simply adding an event listener.</p>
-
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">blogLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;[href=&quot;#target&quot;]&#39;</span><span class="p">);</span>
-<span class="nx">blogLink</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-	<span class="nx">scrollTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">).</span><span class="nx">offsetTop</span><span class="p">);</span>
-<span class="p">},</span> <span class="kc">false</span><span class="p">);</span></code></pre></div>
-
-<p>I could do any number of things to target the link differently, this is just an example. I could also pass in a different duration if I wanted to:</p>
-
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">scrollTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">).</span><span class="nx">offsetTop</span><span class="p">,</span><span class="mi">2000</span><span class="p">);</span> <span class="c1">// call function with a 2 second animation</span></code></pre></div>
-
-<p>Due to the fact that I’m only using this once, I didn’t have to create an external function all. Everything could have been written directly inside the event listener, but I have a feeling this is something I’ll make use of again.</p>
-
-<p>Even though this didn’t really work in CSS, I’m really happy that it was so simple using JavaScript. I’m not trying to avoid jQuery out of spite, or anger, or anything else. I just don’t want to include a library just for a few small functions. jQuery is an excellent framework, it’s just too heavy for what I need right now. You are more than welcome to use it, I do for many projects, but it wasn’t fitting in this case.</p>
+<p><strong>RANT COMPLETE</strong></p>
 
             </section>
             
@@ -215,6 +203,21 @@
             <div class="[ box  box--highlight ]  mb">
                 <h3 class="heading">Related Posts</h3>
                 <ul class="list-ui  post__list">
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-11-07">Friday, November 07, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/11/07/writing-good-css">Writing Good CSS</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-10-22">Wednesday, October 22, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/10/22/html-basics">HTML Basics</a></h3>
+                        </li>
+                    
+                        <li class="list-ui__item">
+                           <time class="post__date" datetime="2014-05-14">Wednesday, May 14, 2014</time>
+                           <h3 class="post__title"><a href="/blog/2014/05/14/semantic-html">Semantic HTML</a></h3>
+                        </li>
                     
                 </ul>
             </div>
