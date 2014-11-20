@@ -44,7 +44,29 @@
         <meta name="twitter:description" content="I try to make the web a better place by writing the best possible code I can, I trying to share my knowledge with others.">
     
     
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type='text/javascript'>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function() {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +
+        '//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
+     
+    <script type='text/javascript'>
+        googletag.cmd.push(function() {
+        googletag.defineSlot('/208980809/Blog_Post_Skyscraper', [300, 600], 'div-gpt-ad-1416444770785-0').addService(googletag.pubads());
+        googletag.defineSlot('/208980809/Rectangle', [300, 250], 'div-gpt-ad-1416444770785-1').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        });
+    </script>
   
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -132,11 +154,7 @@
 <div class="wrapper">
 	<div class="grid">
 		<div class="grid__item  grid__item--lap-and-up-one-half  grid__item--desk-two-thirds">
-			<p>Hi, my name is Mark. I am a full-stack web developer who’s passionate about user experience. I believe in creating scalable systems, and therefore I focus on writing clean, clear, maintainable code for websites and web applications. I write, work and teach about web design and development.</p>
-
-<h2 id="what-does-full-stack-mean">What Does Full-Stack Mean?</h2>
-
-<p>This means I have experience and comfort with both back-end and front-end systems. I work on regular basis with server-side languages such as PHP and ColdFusion, as well as many client-side technologies such as JavaScript, HTML and CSS.</p>
+			<p>Hi, my name is Mark. I am a <a href="/blog/2014/08/15/the-full-stack-web-developer">full-stack</a> web developer who’s passionate about user experience. I believe in creating scalable systems, and therefore I focus on writing clean, clear, maintainable code for websites and web applications. I write, work and teach about web design and development.</p>
 
 		</div><!--
 
@@ -166,14 +184,12 @@
 	        </div>
 
 	        <div class="text-center">
-	        	<!-- Page Rectangle -->
-	        	<ins class="adsbygoogle"
-	        	     style="display:inline-block;width:300px;height:250px"
-	        	     data-ad-client="ca-pub-1949517550744410"
-	        	     data-ad-slot="1418843683"></ins>
-	        	<script>
-	        	(adsbygoogle = window.adsbygoogle || []).push({});
-	        	</script>
+	        	<!-- Rectangle -->
+	        	<div id='div-gpt-ad-1416444770785-1' style='width:300px; height:250px;'>
+		        	<script type='text/javascript'>
+		        		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1416444770785-1'); });
+		        	</script>
+	        	</div>
 	        </div>
 		</div>
 	</div>

@@ -44,7 +44,29 @@
         <meta name="twitter:description" content="Title elements, like their name suggests, define the title of what is being viewed. Title tags are often used on search results pages, or in social sharing, to show preview...">
     
     
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type='text/javascript'>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function() {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +
+        '//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
+     
+    <script type='text/javascript'>
+        googletag.cmd.push(function() {
+        googletag.defineSlot('/208980809/Blog_Post_Skyscraper', [300, 600], 'div-gpt-ad-1416444770785-0').addService(googletag.pubads());
+        googletag.defineSlot('/208980809/Rectangle', [300, 250], 'div-gpt-ad-1416444770785-1').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        });
+    </script>
   
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -243,14 +265,12 @@ This is a short explaining title tags, hosted and produced by the Quality Assura
             </div>
             
             <div class="text-center">
-                <!-- Blog Post Skyscraper -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:300px;height:600px"
-                     data-ad-client="ca-pub-1949517550744410"
-                     data-ad-slot="3035177684"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <!-- Blog_Post_Skyscraper -->
+                <div id='div-gpt-ad-1416444770785-0' style='width:300px; height:600px;'>
+                    <script type='text/javascript'>
+                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1416444770785-0'); });
+                    </script>
+                </div>
             </div>
         </div>
     </div>
